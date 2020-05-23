@@ -1,0 +1,87 @@
+@import '~assets/scss/globals';
+
+.container {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	max-width: 90rem;
+	margin: 0 auto;
+}
+
+.subtitle {
+	font-size: $font-size-20;
+
+	color: $jungle-green-light;
+}
+
+.title {
+	font-family: $font-family-secondary;
+	font-size: $font-size-96;
+
+	color: $jungle-green;
+}
+
+.cta {
+	position: relative;
+	display: flex;
+	align-items: center;
+	margin-top: s(10);
+	padding: s(2) s(8);
+	margin-bottom: s(5);
+
+	font-size: $font-size-24;
+	font-weight: $font-weight-bold;
+
+	color: $pure-white;
+	border-radius: $border-radius-base;
+	background-color: $faded-orange;
+
+	transition: transform $animation-hover;
+
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+
+		border-radius: $border-radius-base;
+		background-color: $faded-orange;
+		transition: transform $animation-back;
+		z-index: $z-index-back;
+	}
+
+	&:hover {
+		&::after {
+			transform: scale(1.1);
+		}
+	}
+
+	&:active {
+		&::after {
+			transform: scale(1);
+		}
+	}
+}
+
+.arrowIcon {
+	margin-left: s(2);
+	width: 1.8rem;
+}
+
+.leaves {
+	position: absolute;
+	bottom: 0;
+	z-index: $z-index-back;
+}
+
+.leaves1 {
+	left: 0;
+}
+
+.leaves2 {
+	right: 0;
+}

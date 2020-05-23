@@ -1,0 +1,19 @@
+@import '~assets/scss/globals';
+
+.year {
+	display: flex;
+	align-items: baseline;
+}
+
+.label {
+	font-weight: $font-weight-bold;
+	font-size: $font-size-18;
+	color: $jungle-green-light;
+	margin-right: s(1.5);
+}
+
+.content {
+	font-size: $font-size-36;
+	color: $jungle-green;
+	overflow: hidden;
+}

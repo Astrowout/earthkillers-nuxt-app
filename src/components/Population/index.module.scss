@@ -1,0 +1,27 @@
+@import '~assets/scss/globals';
+
+.population {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.label {
+	font-weight: $font-weight-bold;
+	font-size: $font-size-18;
+	color: $jungle-green-light;
+}
+
+.content {
+	display: block;
+	overflow: hidden;
+	font-size: $font-size-48;
+	color: $jungle-green;
+}
+
+.char {
+	display: inline-block;
+	will-change: transform;
+}

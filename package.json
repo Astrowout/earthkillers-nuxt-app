@@ -1,0 +1,45 @@
+{
+  "name": "earthkillers-nuxt-app",
+  "version": "1.0.0",
+  "description": "The impact of population growth through history.",
+  "author": "Wout Vandesompele",
+  "private": true,
+  "scripts": {
+    "start": "nuxt",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
+  },
+  "lint-staged": {
+    "*.{js,vue}": "npm run lint",
+    "*.{css,vue}": "stylelint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/pwa": "^3.0.0-0",
+    "gsap": "^3.2.6",
+    "lodash": "^4.17.15",
+    "nuxt": "^2.12.2",
+    "nuxt-i18n": "^6.11.0",
+    "pixi.js": "^5.2.3"
+  },
+  "devDependencies": {
+    "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/eslint-config": "^2.0.0",
+    "@nuxtjs/eslint-module": "^1.0.0",
+    "@nuxtjs/stylelint-module": "^3.1.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^6.1.0",
+    "eslint-plugin-nuxt": ">=0.4.2",
+    "husky": "^4.0.0",
+    "lint-staged": "^10.0.0",
+    "node-sass": "^4.14.0",
+    "sass-loader": "^8.0.2",
+    "stylelint": "^10.1.0"
+  }
+}

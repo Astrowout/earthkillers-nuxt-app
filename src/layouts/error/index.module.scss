@@ -1,0 +1,67 @@
+@import '~assets/scss/globals';
+
+.container {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	background-color: $jungle-green;
+}
+
+.content {
+	max-width: 80rem;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.title {
+	font-family: $font-family-secondary;
+	font-size: $font-size-48;
+
+	color: $sky-blue;
+}
+
+.text {
+	font-size: $font-size-20;
+
+	color: $jungle-green-light;
+}
+
+.cta {
+	position: relative;
+	display: flex;
+	align-items: center;
+	margin-top: s(5);
+	padding: s(1.5) s(6);
+	margin-bottom: s(5);
+
+	font-size: $font-size-20;
+	font-weight: $font-weight-bold;
+
+	color: $pure-white;
+	border-radius: $border-radius-base;
+	background-color: $jungle-green-light;
+
+	will-change: transform;
+	transition: transform $animation-hover;
+
+	&:hover {
+		.arrowIcon {
+			transform: translate3d(-0.8rem, 0, 0);
+		}
+	}
+
+	&:active {
+		transform: scale(0.9);
+	}
+}
+
+.arrowIcon {
+	margin-right: s(2);
+	width: 1.8rem;
+
+	will-change: transform;
+	transition: transform $animation-hover;
+}

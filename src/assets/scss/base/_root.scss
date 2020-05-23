@@ -1,0 +1,30 @@
+html {
+	font-size: 62.5%;
+	height: 100%;
+	background-color: $sky-blue;
+	overflow-y: scroll;
+}
+
+body {
+	height: 100%;
+
+	font-family: $font-family-primary;
+	line-height: $line-height-base;
+	text-align: center;
+}
+
+#__nuxt {
+	height: 100%;
+}
+
+#__layout {
+	height: 100%;
+}
+
+
+body,
+a,
+button {
+	cursor: url('~assets/images/ui/cursor.png'), auto;
+	cursor: -webkit-image-set(url('~assets/images/ui/cursor.png') 1x, url('~assets/images/ui/cursor-x2.png') 2x), auto;
+}

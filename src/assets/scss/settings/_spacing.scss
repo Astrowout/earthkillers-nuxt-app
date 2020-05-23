@@ -1,0 +1,5 @@
+$spacing-base: 1rem;
+
+@function s($times) {
+	@return $spacing-base * $times;
+}
