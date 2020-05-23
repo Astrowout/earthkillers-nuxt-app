@@ -28,6 +28,7 @@ export default {
 			maxScroll: 0,
 			lastScrollTop: 0,
 			firstScroll: true,
+			isScrolling: null,
 			future: false
 		};
 	},
@@ -67,9 +68,9 @@ export default {
 			clouds.y = 50;
 
 			walkingPlayer.anchor.set(0.5, 1);
-			walkingPlayer.scale.set(0.4);
+			walkingPlayer.scale.set(0.7);
 			walkingPlayer.x = (this.$PIXI.screen.width / 2);
-			walkingPlayer.y = this.$PIXI.screen.height - ground.height + 12;
+			walkingPlayer.y = this.$PIXI.screen.height - ground.height + 18;
 
 			this.$PIXI.stage.addChild(ground);
 			this.$PIXI.stage.addChild(clouds);
@@ -101,18 +102,51 @@ export default {
 				overwrite: true
 			});
 
-			walkingPlayer.gotoAndStop(walkingPlayer.currentFrame + 1);
+			walkingPlayer.animationSpeed = 0.5;
+			walkingPlayer.play();
 
 			const st = window.pageYOffset || document.documentElement.scrollTop;
 			if (st > this.lastScrollTop) {
-				walkingPlayer.scale.set(0.4);
+				gsap.to(walkingPlayer.scale, {
+					x: 0.7,
+					duration: 0.2,
+					overwrite: true
+				});
 			} else {
-				walkingPlayer.scale.set(-0.4, 0.4);
+				gsap.to(walkingPlayer.scale, {
+					x: -0.7,
+					y: 0.7,
+					duration: 0.2,
+					overwrite: true
+				});
 			}
+
 			this.lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+
+			clearTimeout(this.isScrolling);
+			// Set a timeout to run after scrolling ends
+			this.isScrolling = setTimeout(() => {
+				this.handleIdle();
+			}, 200);
 		}, 100),
 
-		resizeScene() {
+		handleIdle() {
+			const { walkingPlayer } = sprites;
+			walkingPlayer.stop();
+
+			const frames = {
+				current: walkingPlayer.currentFrame
+			};
+
+			const idleFrame = gsap.utils.snap([2, 17], frames.current);
+
+			gsap.to(frames, {
+				current: idleFrame,
+				onUpdate: () => walkingPlayer.gotoAndStop(frames.current)
+			});
+		},
+
+		handleResize: debounce(function() {
 			const { ground, walkingPlayer } = sprites;
 
 			ground.y = this.$PIXI.screen.height;
@@ -120,10 +154,6 @@ export default {
 
 			walkingPlayer.x = (this.$PIXI.screen.width / 2);
 			walkingPlayer.y = this.$PIXI.screen.height - ground.height + 12;
-		},
-
-		handleResize: debounce(function() {
-			this.resizeScene();
 		}, 300)
 	}
 };
