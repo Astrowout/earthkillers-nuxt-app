@@ -8,6 +8,7 @@ const config = {
 	cloudSpeed: 0.5,
 	playerScale: 0.7,
 	robotScale: 0.9,
+	robotAngle: 20,
 	maxPlayerSpeed: 0.6,
 	totalDuration: 100000,
 	hintDuration: 2000

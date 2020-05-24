@@ -145,7 +145,7 @@ const setupScene = () => {
 
 	sprites.robot.anchor.set(0.5, 1);
 	sprites.robot.scale.set(config.robotScale);
-	sprites.robot.x = (app.screen.width / 2);
+	sprites.robot.x = -sprites.robot.width;
 	sprites.robot.y = app.screen.height - sprites.ground.height + 15;
 
 	sprites.walkingPlayer.anchor.set(0.5, 1);
@@ -167,6 +167,7 @@ const renderScene = () => {
 	app.stage.addChild(sprites.ground);
 	sprites.ground.addChild(sprites.groundOverlay);
 	app.stage.addChild(sprites.walkingPlayer);
+	app.stage.addChild(sprites.robot);
 
 	const noiseFilter = new PIXI.filters.NoiseFilter(0.03);
 	app.stage.filters = [noiseFilter];

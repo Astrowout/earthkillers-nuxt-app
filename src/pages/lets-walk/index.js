@@ -119,24 +119,46 @@ export default {
 				duration: 2
 			});
 
-			gsap
-				.timeline({
-					reversed: !future
-				})
-				.to(walkingPlayer, {
-					y: this.$PIXI.screen.height + walkingPlayer.height,
-					alpha: 0,
-					duration: 0.8,
-					ease: 'back.in(4)'
-				})
-				.call(() => {
-					this.$PIXI.stage.addChild(robot);
-				})
-				.from(robot, {
-					x: -robot.width,
-					angle: -30,
-					duration: 1.2
-				});
+			if (future) {
+				gsap
+					.timeline()
+					.to(walkingPlayer, {
+						y: this.$PIXI.screen.height + walkingPlayer.height,
+						alpha: 0,
+						duration: 0.6,
+						ease: 'back.in(3)'
+					})
+					.fromTo(robot, {
+						x: -robot.width,
+						angle: -20
+					}, {
+						x: this.$PIXI.screen.width / 2,
+						duration: 1,
+						ease: 'back.out(0.8)'
+					})
+					.fromTo(robot, {
+						angle: -20
+					}, {
+						angle: 0,
+						duration: 2.5,
+						ease: 'elastic.out(1, 0.3)'
+					}, '<0.26');
+			} else {
+				gsap
+					.timeline()
+					.to(robot, {
+						x: this.$PIXI.screen.width + robot.width,
+						duration: 1,
+						angle: -20,
+						ease: 'power2.in'
+					})
+					.to(walkingPlayer, {
+						y: this.$PIXI.screen.height - groundOverlay.height + 18,
+						alpha: 1,
+						duration: 0.6,
+						ease: 'back.out(3)'
+					});
+			}
 		},
 
 		renderCanvas() {
@@ -146,19 +168,30 @@ export default {
 		},
 
 		animatePlayer: throttle(function(progress) {
-			const { walkingPlayer } = sprites;
+			const { walkingPlayer, robot } = sprites;
 
 			const speedSetter = gsap.quickSetter(walkingPlayer, 'animationSpeed');
-			const speed = getScrollSpeed(progress);
+			const angleSetter = gsap.quickSetter(robot, 'angle');
 
-			speedSetter(speed);
+			if (!this.future) {
+				const speed = getScrollSpeed(progress);
+
+				speedSetter(speed);
+			} else {
+				const angle = getScrollSpeed(progress, true);
+
+				console.log(angle);
+
+				angleSetter(-angle);
+			}
 
 			clearTimeout(timer);
 
 			timer = setTimeout(() => {
 				speedSetter(0);
+				angleSetter(0);
 			}, 300);
-		}, 80),
+		}, 100),
 
 		loopScene() {
 			const { clouds } = sprites;
