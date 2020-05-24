@@ -1,8 +1,10 @@
 import * as PIXI from 'pixi.js';
 import gsap from 'gsap';
+import { config } from '@/assets/config';
 
 import ground from '@/assets/images/stroll/ground.jpg';
-import clouds from '@/assets/images/stroll/clouds.jpg';
+import clouds from '@/assets/images/stroll/clouds.png';
+import robot from '@/assets/images/stroll/player/robot.png';
 import walking1 from '@/assets/images/stroll/player/walk-1.png';
 import walking2 from '@/assets/images/stroll/player/walk-2.png';
 import walking3 from '@/assets/images/stroll/player/walk-3.png';
@@ -67,7 +69,6 @@ const setupPixi = () => {
 	logger('Setting up PIXI...');
 
 	app = new PIXI.Application({
-		backgroundColor: '0xBAE8E8',
 		antialias: true,
 		autoStart: false,
 		resizeTo: window
@@ -89,6 +90,7 @@ const loadAssets = () => {
 		app.loader
 			.add('ground', ground)
 			.add('clouds', clouds)
+			.add('robot', robot)
 			.add('playerWalking', playerWalking)
 			.load((_, assets) => {
 				logger('PIXI assets loaded', true);
@@ -101,8 +103,14 @@ const loadAssets = () => {
 const setupSprites = (assets) => {
 	logger('Setting up PIXI sprites...');
 
+	sprites.background = new PIXI.Graphics();
+	sprites.futureBackground = new PIXI.Graphics();
+	sprites.groundOverlay = new PIXI.Graphics();
+
 	sprites.ground = new PIXI.TilingSprite(assets.ground.texture, app.screen.width, assets.ground.texture.height);
 	sprites.clouds = new PIXI.TilingSprite(assets.clouds.texture, app.screen.width, assets.clouds.texture.height);
+
+	sprites.robot = new PIXI.Sprite(assets.robot.texture);
 
 	const walkFrames = playerWalking.map((frame) => {
 		return PIXI.Texture.from(frame);
@@ -113,15 +121,57 @@ const setupSprites = (assets) => {
 };
 
 const setupScene = () => {
-	const background = new PIXI.Graphics();
+	logger('Setting up scene...');
 
-	background.beginFill(0xBAE8E8);
-	background.drawRect(0, 0, app.screen.width, app.screen.height);
-	background.endFill();
-	app.stage.addChild(background);
+	sprites.background.beginFill(0xBAE8E8);
+	sprites.background.drawRect(0, 0, app.screen.width, app.screen.height);
+	sprites.background.endFill();
 
-	const noiseFilter = new PIXI.filters.NoiseFilter(0.02);
+	sprites.futureBackground.beginFill(0x022727);
+	sprites.futureBackground.drawRect(0, 0, app.screen.width, app.screen.height);
+	sprites.futureBackground.endFill();
+
+	sprites.groundOverlay.beginFill(0x022727);
+	sprites.groundOverlay.drawRect(0, 0, app.screen.width, sprites.ground.height);
+	sprites.groundOverlay.endFill();
+
+	sprites.clouds.y = 50;
+
+	sprites.ground.anchor.set(0, 1);
+	sprites.ground.y = app.screen.height;
+
+	sprites.groundOverlay.y = -sprites.ground.height;
+	sprites.groundOverlay.alpha = 0;
+
+	sprites.robot.anchor.set(0.5, 1);
+	sprites.robot.scale.set(config.robotScale);
+	sprites.robot.x = (app.screen.width / 2);
+	sprites.robot.y = app.screen.height - sprites.ground.height + 15;
+
+	sprites.walkingPlayer.anchor.set(0.5, 1);
+	sprites.walkingPlayer.scale.set(config.playerScale);
+	sprites.walkingPlayer.x = (app.screen.width / 2);
+	sprites.walkingPlayer.y = app.screen.height - sprites.ground.height + 18;
+	sprites.walkingPlayer.animationSpeed = 0;
+	sprites.walkingPlayer.play();
+
+	logger('Scene setup successfully', true);
+};
+
+const renderScene = () => {
+	logger('Rendering scene...');
+
+	app.stage.addChild(sprites.futureBackground);
+	app.stage.addChild(sprites.background);
+	app.stage.addChild(sprites.clouds);
+	app.stage.addChild(sprites.ground);
+	sprites.ground.addChild(sprites.groundOverlay);
+	app.stage.addChild(sprites.walkingPlayer);
+
+	const noiseFilter = new PIXI.filters.NoiseFilter(0.03);
 	app.stage.filters = [noiseFilter];
+
+	logger('Scene fully rendered', true);
 };
 
 export default async(_, inject) => {
@@ -129,6 +179,7 @@ export default async(_, inject) => {
 	await setupPixi();
 	await loadAssets();
 	await setupScene();
+	await renderScene();
 
 	// This will make $PIXI available in the context
 	inject('PIXI', app);

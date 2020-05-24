@@ -1,5 +1,9 @@
 <template>
-	<div :class="$style.year">
+	<div
+		:class="[$style.year, {
+			[$style['is-future']]: isFuture
+		}]"
+	>
 		<span :class="$style.label">
 			{{ $t('stroll.year') }}
 		</span>

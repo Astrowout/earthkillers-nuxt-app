@@ -1,8 +1,11 @@
 import gsap from 'gsap';
-import { throttle, debounce } from 'lodash';
+import { debounce, throttle } from 'lodash';
 import { config } from '@/assets/config';
 import { Year, Population, Hamburger } from '@/components';
 import { sprites } from '@/plugins/pixi';
+import { getScrollSpeed } from '@/utils/scrollSpeed';
+
+let timer = null;
 
 export default {
 	head: {
@@ -25,7 +28,6 @@ export default {
 		return {
 			currentYear: 0,
 			currentPopulation: 0,
-			maxScroll: 0,
 			lastScrollTop: 0,
 			firstScroll: true,
 			isScrolling: null,
@@ -33,118 +35,161 @@ export default {
 		};
 	},
 	created() {
-		window.addEventListener('scroll', this.animateScene);
 		window.addEventListener('resize', this.handleResize);
 	},
 	destroyed() {
-		window.removeEventListener('scroll', this.animateScene);
 		window.removeEventListener('resize', this.handleResize);
 	},
 	mounted() {
+		this.handleScroll();
 		this.renderCanvas();
-		this.renderScene();
-
-		this.maxScroll = Math.max(
-			document.body.scrollHeight,
-			document.body.offsetHeight,
-			document.documentElement.clientHeight,
-			document.documentElement.scrollHeight,
-			document.documentElement.offsetHeight
-		) - window.innerHeight;
+		this.loopScene();
 	},
 	methods: {
+		handleScroll() {
+			const controller = new this.$ScrollMagic.Controller();
+
+			const scene = new this.$ScrollMagic.Scene({
+				duration: config.totalDuration,
+				triggerElement: this.$refs.container,
+				triggerHook: 0
+			})
+				.setPin(this.$refs.container)
+				.addTo(controller);
+
+			const startScene = new this.$ScrollMagic.Scene({
+				duration: config.hintDuration,
+				triggerElement: this.$refs.container,
+				triggerHook: 0
+			})
+				.addTo(controller);
+
+			const futureScene = new this.$ScrollMagic.Scene({
+				duration: config.futureDuration,
+				triggerElement: this.$refs.container,
+				triggerHook: 0
+			})
+				.addTo(controller);
+
+			scene.on('progress', (e) => {
+				this.animatePlayer(e.progress);
+				this.animateScene(e.progress, e.scrollDirection);
+			});
+
+			startScene.on('end', (e) => {
+				this.handleFirstScroll(e.scrollDirection);
+			});
+
+			futureScene.on('end', (e) => {
+				this.handleFuture(e.scrollDirection);
+			});
+		},
+
+		handleFirstScroll(scrollDirection) {
+			if (scrollDirection === 'FORWARD') {
+				this.firstScroll = false;
+			}
+		},
+
+		handleFuture(scrollDirection) {
+			if (scrollDirection === 'FORWARD') {
+				this.future = true;
+				this.changeScene(true);
+			} else if (scrollDirection === 'REVERSE') {
+				this.future = false;
+				this.changeScene(false);
+			}
+		},
+
+		changeScene(future) {
+			const { walkingPlayer, background, clouds, groundOverlay, robot } = sprites;
+
+			gsap.to(background, {
+				alpha: future ? 0 : 1,
+				duration: 3
+			});
+
+			gsap.to(clouds, {
+				alpha: future ? 0.2 : 1,
+				duration: 2
+			});
+
+			gsap.to(groundOverlay, {
+				alpha: future ? 0.4 : 0,
+				duration: 2
+			});
+
+			gsap
+				.timeline({
+					reversed: !future
+				})
+				.to(walkingPlayer, {
+					y: this.$PIXI.screen.height + walkingPlayer.height,
+					alpha: 0,
+					duration: 0.8,
+					ease: 'back.in(4)'
+				})
+				.call(() => {
+					this.$PIXI.stage.addChild(robot);
+				})
+				.from(robot, {
+					x: -robot.width,
+					angle: -30,
+					duration: 1.2
+				});
+		},
+
 		renderCanvas() {
 			const { container } = this.$refs;
 
 			container.insertBefore(this.$PIXI.view, container.firstChild);
 		},
 
-		renderScene() {
-			const { ground, walkingPlayer, clouds } = sprites;
+		animatePlayer: throttle(function(progress) {
+			const { walkingPlayer } = sprites;
 
-			ground.anchor.set(0, 1);
-			ground.y = this.$PIXI.screen.height;
+			const speedSetter = gsap.quickSetter(walkingPlayer, 'animationSpeed');
+			const speed = getScrollSpeed(progress);
 
-			clouds.y = 50;
+			speedSetter(speed);
 
-			walkingPlayer.anchor.set(0.5, 1);
-			walkingPlayer.scale.set(0.7);
-			walkingPlayer.x = (this.$PIXI.screen.width / 2);
-			walkingPlayer.y = this.$PIXI.screen.height - ground.height + 18;
+			clearTimeout(timer);
 
-			this.$PIXI.stage.addChild(ground);
-			this.$PIXI.stage.addChild(clouds);
-			this.$PIXI.stage.addChild(walkingPlayer);
+			timer = setTimeout(() => {
+				speedSetter(0);
+			}, 300);
+		}, 80),
+
+		loopScene() {
+			const { clouds } = sprites;
+
+			this.$PIXI.ticker.add(() => {
+				clouds.tilePosition.x -= config.cloudSpeed;
+			});
 		},
 
-		animateScene: throttle(function() {
-			if (this.firstScroll) {
-				this.firstScroll = false;
-			}
+		animateScene: throttle(function(progress, scrollDirection) {
+			const { ground, walkingPlayer } = sprites;
 
-			const { ground, walkingPlayer, clouds } = sprites;
-
-			const scrollPos = window.pageYOffset;
-
-			const year = gsap.utils.mapRange(0, this.maxScroll, config.startYear, config.endYear, scrollPos);
+			const year = gsap.utils.mapRange(0, 1, config.startYear, config.endYear, progress);
 			this.currentYear = Math.round(year);
 
-			const population = gsap.utils.mapRange(0, this.maxScroll, config.startPopulation, this.totalPopulation, scrollPos);
+			const population = gsap.utils.mapRange(0, 1, config.startPopulation, this.totalPopulation, progress);
 			this.currentPopulation = Math.round(population);
 
 			gsap.to(ground.tilePosition, {
-				x: gsap.utils.mapRange(0, this.maxScroll, 0, 10000, -scrollPos),
+				x: gsap.utils.mapRange(0, 1, 0, config.groundSpeed, -progress),
+				duration: 0.2,
 				overwrite: true
 			});
 
-			gsap.to(clouds.tilePosition, {
-				x: gsap.utils.mapRange(0, this.maxScroll, 0, 1000, -scrollPos),
+			// Reverse player position when scrolling backwards
+			gsap.to(walkingPlayer.scale, {
+				x: scrollDirection === 'REVERSE' ? -config.playerScale : config.playerScale,
+				duration: 0.2,
 				overwrite: true
 			});
-
-			walkingPlayer.animationSpeed = 0.5;
-			walkingPlayer.play();
-
-			const st = window.pageYOffset || document.documentElement.scrollTop;
-			if (st > this.lastScrollTop) {
-				gsap.to(walkingPlayer.scale, {
-					x: 0.7,
-					duration: 0.2,
-					overwrite: true
-				});
-			} else {
-				gsap.to(walkingPlayer.scale, {
-					x: -0.7,
-					y: 0.7,
-					duration: 0.2,
-					overwrite: true
-				});
-			}
-
-			this.lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
-
-			clearTimeout(this.isScrolling);
-			// Set a timeout to run after scrolling ends
-			this.isScrolling = setTimeout(() => {
-				this.handleIdle();
-			}, 200);
 		}, 100),
-
-		handleIdle() {
-			const { walkingPlayer } = sprites;
-			walkingPlayer.stop();
-
-			const frames = {
-				current: walkingPlayer.currentFrame
-			};
-
-			const idleFrame = gsap.utils.snap([2, 17], frames.current);
-
-			gsap.to(frames, {
-				current: idleFrame,
-				onUpdate: () => walkingPlayer.gotoAndStop(frames.current)
-			});
-		},
 
 		handleResize: debounce(function() {
 			const { ground, walkingPlayer } = sprites;

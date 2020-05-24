@@ -24,4 +24,12 @@
 .char {
 	display: inline-block;
 	will-change: transform;
+
+	transition: color $animation-long;
+}
+
+.is-future {
+	.content {
+		color: $dirty-white;
+	}
 }

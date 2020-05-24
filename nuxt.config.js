@@ -46,6 +46,10 @@ export default {
 			mode: 'client'
 		},
 		{
+			src: '@/plugins/scrollmagic.js',
+			mode: 'client'
+		},
+		{
 			src: '@/plugins/routes.js',
 			mode: 'client'
 		}
