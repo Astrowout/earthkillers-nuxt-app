@@ -5,12 +5,10 @@ import { config } from '@/assets/config';
 let lastPos = 0;
 const minSpeed = 0;
 const maxSpeed = config.maxPlayerSpeed;
-const minAngle = 0;
-const maxAngle = config.robotAngle;
 const minDelta = 0;
 const maxDelta = 0.005;
 
-export const getScrollSpeed = (progress, robot) => {
+export const getScrollSpeed = (progress) => {
 	const delta = {
 		current: 0
 	};
@@ -26,15 +24,5 @@ export const getScrollSpeed = (progress, robot) => {
 		gsap.utils.mapRange(minDelta, maxDelta, minSpeed, maxSpeed)
 	);
 
-	const angleTransformer = gsap.utils.pipe(
-		gsap.utils.snap(0.001),
-		gsap.utils.mapRange(minDelta, maxDelta, minAngle, maxAngle),
-		gsap.utils.clamp(-maxAngle, maxAngle)
-	);
-
-	if (robot) {
-		return angleTransformer(delta.current);
-	} else {
-		return Math.abs(speedTransformer(delta.current));
-	}
+	return Math.abs(speedTransformer(delta.current));
 };

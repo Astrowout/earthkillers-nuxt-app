@@ -168,29 +168,18 @@ export default {
 		},
 
 		animatePlayer: throttle(function(progress) {
-			const { walkingPlayer, robot } = sprites;
-
-			const speedSetter = gsap.quickSetter(walkingPlayer, 'animationSpeed');
-			const angleSetter = gsap.quickSetter(robot, 'angle');
-
 			if (!this.future) {
+				const { walkingPlayer } = sprites;
+				const speedSetter = gsap.quickSetter(walkingPlayer, 'animationSpeed');
 				const speed = getScrollSpeed(progress);
 
 				speedSetter(speed);
-			} else {
-				const angle = getScrollSpeed(progress, true);
 
-				console.log(angle);
-
-				angleSetter(-angle);
+				clearTimeout(timer);
+				timer = setTimeout(() => {
+					speedSetter(0);
+				}, 300);
 			}
-
-			clearTimeout(timer);
-
-			timer = setTimeout(() => {
-				speedSetter(0);
-				angleSetter(0);
-			}, 300);
 		}, 100),
 
 		loopScene() {
@@ -225,13 +214,21 @@ export default {
 		}, 100),
 
 		handleResize: debounce(function() {
-			const { ground, walkingPlayer } = sprites;
+			const { ground, walkingPlayer, robot, background, futureBackground } = sprites;
 
 			ground.y = this.$PIXI.screen.height;
 			ground.width = this.$PIXI.screen.width;
 
+			background.width = this.$PIXI.screen.width;
+			background.height = this.$PIXI.screen.height;
+
+			futureBackground.width = this.$PIXI.screen.width;
+			futureBackground.height = this.$PIXI.screen.height;
+
+			robot.y = this.$PIXI.screen.height - ground.height + 15;
+
 			walkingPlayer.x = (this.$PIXI.screen.width / 2);
-			walkingPlayer.y = this.$PIXI.screen.height - ground.height + 12;
+			walkingPlayer.y = this.$PIXI.screen.height - ground.height + 18;
 		}, 300)
 	}
 };
