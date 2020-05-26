@@ -6,6 +6,7 @@ import { sprites } from '@/plugins/pixi';
 import { getScrollSpeed } from '@/utils/scrollSpeed';
 
 let timer = null;
+let prevDirection = null;
 
 export default {
 	head: {
@@ -130,26 +131,26 @@ export default {
 					})
 					.fromTo(robot, {
 						x: -robot.width,
-						angle: -20
+						angle: -10
 					}, {
 						x: this.$PIXI.screen.width / 2,
-						duration: 1,
-						ease: 'back.out(0.8)'
+						duration: 0.6,
+						ease: 'Power2.in'
 					})
 					.fromTo(robot, {
-						angle: -20
+						angle: -10
 					}, {
 						angle: 0,
-						duration: 2.5,
-						ease: 'elastic.out(1, 0.3)'
-					}, '<0.26');
+						duration: 4,
+						ease: 'elastic.out(1.2, 0.2)'
+					}, '<0.3');
 			} else {
 				gsap
 					.timeline()
 					.to(robot, {
 						x: this.$PIXI.screen.width + robot.width,
 						duration: 1,
-						angle: -20,
+						angle: -10,
 						ease: 'power2.in'
 					})
 					.to(walkingPlayer, {
@@ -206,11 +207,15 @@ export default {
 			});
 
 			// Reverse player position when scrolling backwards
-			gsap.to(walkingPlayer.scale, {
-				x: scrollDirection === 'REVERSE' ? -config.playerScale : config.playerScale,
-				duration: 0.2,
-				overwrite: true
-			});
+			if (prevDirection !== scrollDirection) {
+				gsap.to(walkingPlayer.scale, {
+					x: scrollDirection === 'REVERSE' ? -config.playerScale : config.playerScale,
+					duration: 0.2,
+					overwrite: true
+				});
+			}
+
+			prevDirection = scrollDirection;
 		}, 100),
 
 		handleResize: debounce(function() {

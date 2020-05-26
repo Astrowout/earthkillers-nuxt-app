@@ -28,7 +28,7 @@ export default {
 
 			this.throttledPopulation = newValue.toString();
 			this.throttledPopulationArray = newValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',').split('');
-		}, 1400, {
+		}, 1800, {
 			leading: false
 		})
 	},

@@ -1,7 +1,11 @@
 <template>
-	<div :class="$style.hamburger">
-		HAM
-	</div>
+	<button :class="$style.hamburger">
+		<span :class="$style.container">
+			<span :class="[$style.line, $style['line--top']]" />
+			<span :class="[$style.line, $style['line--middle']]" />
+			<span :class="[$style.line, $style['line--bottom']]" />
+		</span>
+	</button>
 </template>
 
 <script type="text/javascript" src="./index.js"></script>

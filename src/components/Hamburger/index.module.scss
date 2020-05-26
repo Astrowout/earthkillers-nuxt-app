@@ -1,0 +1,26 @@
+@import '~assets/scss/globals';
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-end;
+	width: 2.4rem;
+	height: 1.6rem;
+}
+
+.line {
+	display: inline-block;
+	height: 0.2rem;
+	background-color: $jungle-green-light;
+	border-radius: $border-radius-round;
+}
+
+.line--top,
+.line--bottom {
+	width: 100%;
+}
+
+.line--middle {
+	width: 75%;
+}

@@ -4,7 +4,18 @@ import { config } from '@/assets/config';
 
 import ground from '@/assets/images/stroll/ground.jpg';
 import clouds from '@/assets/images/stroll/clouds.png';
-import robot from '@/assets/images/stroll/player/robot.png';
+import robot1 from '@/assets/images/stroll/player/robot-1.png';
+import robot2 from '@/assets/images/stroll/player/robot-2.png';
+import robot3 from '@/assets/images/stroll/player/robot-3.png';
+import robot4 from '@/assets/images/stroll/player/robot-4.png';
+import robot5 from '@/assets/images/stroll/player/robot-5.png';
+import robot6 from '@/assets/images/stroll/player/robot-6.png';
+import robot7 from '@/assets/images/stroll/player/robot-7.png';
+import robot8 from '@/assets/images/stroll/player/robot-8.png';
+import robot9 from '@/assets/images/stroll/player/robot-9.png';
+import robot10 from '@/assets/images/stroll/player/robot-10.png';
+import robot11 from '@/assets/images/stroll/player/robot-11.png';
+import robot12 from '@/assets/images/stroll/player/robot-12.png';
 import walking1 from '@/assets/images/stroll/player/walk-1.png';
 import walking2 from '@/assets/images/stroll/player/walk-2.png';
 import walking3 from '@/assets/images/stroll/player/walk-3.png';
@@ -25,6 +36,21 @@ import walking17 from '@/assets/images/stroll/player/walk-17.png';
 import walking18 from '@/assets/images/stroll/player/walk-18.png';
 import walking19 from '@/assets/images/stroll/player/walk-19.png';
 import walking20 from '@/assets/images/stroll/player/walk-20.png';
+
+const robotLooping = [
+	robot1,
+	robot2,
+	robot3,
+	robot4,
+	robot5,
+	robot6,
+	robot7,
+	robot8,
+	robot9,
+	robot10,
+	robot11,
+	robot12
+];
 
 const playerWalking = [
 	walking1,
@@ -70,7 +96,7 @@ const setupPixi = () => {
 
 	app = new PIXI.Application({
 		antialias: true,
-		autoStart: false,
+		autoDensity: true,
 		resizeTo: window
 	});
 
@@ -90,7 +116,7 @@ const loadAssets = () => {
 		app.loader
 			.add('ground', ground)
 			.add('clouds', clouds)
-			.add('robot', robot)
+			.add('robot', robotLooping)
 			.add('playerWalking', playerWalking)
 			.load((_, assets) => {
 				logger('PIXI assets loaded', true);
@@ -110,7 +136,10 @@ const setupSprites = (assets) => {
 	sprites.ground = new PIXI.TilingSprite(assets.ground.texture, app.screen.width, assets.ground.texture.height);
 	sprites.clouds = new PIXI.TilingSprite(assets.clouds.texture, app.screen.width, assets.clouds.texture.height);
 
-	sprites.robot = new PIXI.Sprite(assets.robot.texture);
+	const robotFrames = robotLooping.map((frame) => {
+		return PIXI.Texture.from(frame);
+	});
+	sprites.robot = new PIXI.AnimatedSprite(robotFrames);
 
 	const walkFrames = playerWalking.map((frame) => {
 		return PIXI.Texture.from(frame);
@@ -145,8 +174,10 @@ const setupScene = () => {
 
 	sprites.robot.anchor.set(0.5, 1);
 	sprites.robot.scale.set(config.robotScale);
-	sprites.robot.x = -sprites.robot.width;
+	sprites.robot.x = -100;
 	sprites.robot.y = app.screen.height - sprites.ground.height + 15;
+	sprites.robot.animationSpeed = 0.1;
+	sprites.robot.play();
 
 	sprites.walkingPlayer.anchor.set(0.5, 1);
 	sprites.walkingPlayer.scale.set(config.playerScale);
