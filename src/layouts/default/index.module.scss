@@ -1,0 +1,17 @@
+@import '~assets/scss/globals';
+
+.hamburger {
+	position: fixed;
+	top: s(3);
+	right: s(2);
+
+	@media screen and (min-width: $viewport-7) {
+		top: s(4);
+		right: s(3);
+	}
+
+	@media screen and (min-width: $viewport-9) {
+		top: s(5);
+		right: s(4);
+	}
+}

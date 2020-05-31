@@ -1,7 +1,7 @@
 import gsap from 'gsap';
 import { debounce, throttle } from 'lodash';
 import { config } from '@/assets/config';
-import { Year, Population, Hamburger } from '@/components';
+import { Year, Population } from '@/components';
 import { sprites } from '@/plugins/pixi';
 import { getScrollSpeed } from '@/utils/scrollSpeed';
 
@@ -14,8 +14,7 @@ export default {
 	},
 	components: {
 		Year,
-		Population,
-		Hamburger
+		Population
 	},
 	async asyncData({ $axios }) {
 		const res = await $axios.$get('https://d6wn6bmjj722w.population.io/1.0/population/World/today-and-tomorrow/');

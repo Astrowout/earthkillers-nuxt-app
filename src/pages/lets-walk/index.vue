@@ -1,33 +1,28 @@
 <template>
 	<div ref="container" :class="$style.container">
-		<div :class="$style.ui">
-			<div :class="$style.top">
-				<Year
-					:current-year="currentYear"
-					:is-future="future"
-				/>
+		<Year
+			:class="$style.year"
+			:current-year="currentYear"
+			:is-future="future"
+		/>
 
-				<Hamburger />
-			</div>
+		<Population
+			:class="$style.population"
+			:current-population="currentPopulation"
+			:is-future="future"
+		/>
 
-			<Population
-				:current-population="currentPopulation"
-				:class="$style.population"
-				:is-future="future"
-			/>
-
-			<transition
-				appear
-				name="fade-out"
+		<transition
+			appear
+			name="fade-out"
+		>
+			<p
+				v-if="firstScroll"
+				:class="$style.instructions"
 			>
-				<p
-					v-if="firstScroll"
-					:class="$style.instructions"
-				>
-					{{ $t('stroll.scroll') }}
-				</p>
-			</transition>
-		</div>
+				{{ $t('stroll.scroll') }}
+			</p>
+		</transition>
 	</div>
 </template>
 

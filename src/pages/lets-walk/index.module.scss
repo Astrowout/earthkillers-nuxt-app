@@ -6,34 +6,25 @@
 	height: 100%;
 }
 
-.item {
-	width: 100%;
+.year,
+.population,
+.instructions {
+	position: fixed;
 }
 
-.ui {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-
-	display: flex;
-	flex-direction: column;
-}
-
-.top {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: s(2) s(3);
+.year {
+	top: s(3);
+	left: s(4);
 }
 
 .population {
-	margin-top: s(2);
+	top: 20%;
+	left: 50%;
+
+	transform: translate3d(-50%, -50%, 0);
 }
 
 .instructions {
-	position: absolute;
 	top: 50%;
 	left: 0;
 	width: 100%;

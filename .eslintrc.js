@@ -18,5 +18,6 @@ module.exports = {
 		"semi": ["error", "always"],
 		"space-before-function-paren": ["error", "never"],
 		"vue/html-indent": ["error", "tab"],
+		"vue/no-v-html": ["off"],
 	}
 }
