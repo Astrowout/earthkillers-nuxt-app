@@ -27,7 +27,8 @@
     "nuxt": "^2.12.2",
     "nuxt-i18n": "^6.11.0",
     "pixi.js": "^5.2.3",
-    "scrollmagic": "^2.0.7"
+    "scrollmagic": "^2.0.7",
+    "tippy.js": "^6.2.3"
   },
   "devDependencies": {
     "@nuxtjs/dotenv": "^1.4.1",
