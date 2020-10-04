@@ -1,4 +1,4 @@
-import gsap from 'gsap';
+import gsap from "gsap";
 
 const config = {
 	startPopulation: 0,
@@ -11,11 +11,11 @@ const config = {
 	robotAngle: 20,
 	maxPlayerSpeed: 0.6,
 	totalDuration: 100000,
-	hintDuration: 2000
+	hintDuration: 2000,
 };
 
 config.futureDuration = gsap.utils.mapRange(config.startYear, config.endYear, 0, config.totalDuration, new Date().getFullYear());
 
 export {
-	config
+	config,
 };

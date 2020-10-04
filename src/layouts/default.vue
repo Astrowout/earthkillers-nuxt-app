@@ -1,12 +1,11 @@
 <template>
-	<div id="__layout">
+	<div class="u-full-height">
 		<nuxt />
 
 		<Menu />
 
-		<Hamburger :class="$style.hamburger" />
+		<Hamburger />
 	</div>
 </template>
 
-<script type="text/javascript" src="./default/index.js"></script>
-<style type="text/css" src="./default/index.module.scss" module lang="scss"></style>
+<script src="./default/index.js"></script>

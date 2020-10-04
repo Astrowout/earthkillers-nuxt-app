@@ -1,5 +1,5 @@
 export default {
 	handleIsMenuOpen({ commit }, payload) {
-		commit('setIsMenuOpen', payload.state);
-	}
+		commit("setIsMenuOpen", payload.state);
+	},
 };

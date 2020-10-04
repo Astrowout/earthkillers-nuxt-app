@@ -1,5 +1,5 @@
 export default {
 	head: {
-		title: 'Human History In A Nutshell'
-	}
+		title: "Human History In A Nutshell",
+	},
 };

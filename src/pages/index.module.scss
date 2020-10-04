@@ -1,134 +1,13 @@
-@import '~assets/scss/globals';
-
-.container {
-	min-height: 100%;
-	display: flex;
-	justify-content: center;
-	max-width: calc(100% - #{s(3)});
-	margin: 0 auto;
-}
-
-.content {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	text-align: left;
-	padding-top: 20vh;
-	padding-bottom: 3rem;
-
-	@media screen and (min-width: $viewport-4) {
-		text-align: center;
-		align-items: center;
-	}
-
-	@media screen and (min-width: $viewport-7) {
-		max-width: 60rem;
-	}
-
-	@media screen and (min-width: $viewport-12) {
-		max-width: 90rem;
-		padding: 10vh 0;
-	}
-}
-
-.subtitle {
-	font-size: $font-size-14;
-
-	color: $jungle-green-light;
-
-	@media screen and (min-width: $viewport-7) {
-		font-size: $font-size-20;
-	}
-}
-
-.title {
-	font-family: $font-family-secondary;
-	font-size: 10vw;
-
-	color: $jungle-green;
-
-	@media screen and (min-width: $viewport-4) {
-		font-size: $font-size-36;
-	}
-
-	@media screen and (min-width: $viewport-7) {
-		font-size: $font-size-48;
-	}
-
-	@media screen and (min-width: $viewport-12) {
-		font-size: $font-size-96;
-	}
-}
-
-.cta {
-	position: relative;
-	display: flex;
-	align-items: center;
-	margin-top: s(3);
-	padding: s(1) s(3);
-
-	font-size: $font-size-18;
-	font-weight: $font-weight-bold;
-
-	color: $pure-white;
-	border-radius: $border-radius-base;
-	background-color: $faded-orange;
-
-	transition: transform $animation-hover;
-
-	@media screen and (min-width: $viewport-4) {
-		margin-top: s(4);
-		padding: s(1.5) s(5);
-		font-weight: $font-size-20;
-	}
-
-	@media screen and (min-width: $viewport-12) {
-		margin-top: s(8);
-		padding: s(2) s(8);
-
-		font-size: $font-size-24;
-	}
-
-	&::after {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-
-		border-radius: $border-radius-base;
-		background-color: $faded-orange;
-		transition: transform $animation-back;
-		z-index: $z-index-back;
-	}
-
-	&:hover {
-		&::after {
-			transform: scale(1.1);
-		}
-	}
-
-	&:active {
-		&::after {
-			transform: scale(1);
-		}
-	}
-}
-
-.arrowIcon {
-	margin-left: s(2);
-	width: 1.8rem;
-}
+@use '~/scss/globals';
 
 .leaves {
 	position: fixed;
 	bottom: 0;
-	z-index: $z-index-back;
+	z-index: globals.$z-index_back;
 	max-width: 50%;
 	opacity: 0.5;
 
-	@media screen and (min-width: $viewport-7) {
+	@media screen and (min-width: globals.$breakpoints_viewport-7) {
 		max-width: 30%;
 		opacity: 1;
 	}

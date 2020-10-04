@@ -1,4 +1,4 @@
-@import '~assets/scss/globals';
+@use '~/scss/globals';
 
 .container {
 	overflow: hidden;
@@ -13,8 +13,8 @@
 }
 
 .year {
-	top: s(3);
-	left: s(4);
+	top: globals.spacing_s(3);
+	left: globals.spacing_s(4);
 }
 
 .population {
@@ -32,6 +32,6 @@
 	display: block;
 	text-align: center;
 
-	font-size: $font-size-18;
-	color: $jungle-green-light;
+	font-size: globals.$typography_font-size-18;
+	color: globals.$colors_jungle-green-light;
 }

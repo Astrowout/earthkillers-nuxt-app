@@ -31,5 +31,5 @@
 	</div>
 </template>
 
-<script type="text/javascript" src="./index.js"></script>
-<style type="text/css" src="./index.module.scss" module lang="scss"></style>
+<script src="./index.js"></script>
+<style src="./index.module.scss" module lang="scss"></style>

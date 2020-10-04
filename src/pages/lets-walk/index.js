@@ -1,29 +1,26 @@
-import gsap from 'gsap';
-import { debounce, throttle } from 'lodash';
-import { config } from '@/assets/config';
-import { Year, Population } from '@/components';
-import { sprites } from '@/plugins/pixi';
-import { getScrollSpeed } from '@/utils/scrollSpeed';
+import gsap from "gsap";
+import { debounce, throttle } from "lodash";
+import { config } from "~/assets/config";
+import { sprites } from "~/plugins/pixi";
+import { getScrollSpeed } from "~/utils/scrollSpeed";
 
 let timer = null;
 let prevDirection = null;
 
 export default {
 	head: {
-		title: 'A Stroll Through History'
+		title: "A Stroll Through History",
 	},
-	components: {
-		Year,
-		Population
-	},
+
 	async asyncData({ $axios }) {
-		const res = await $axios.$get('https://d6wn6bmjj722w.population.io/1.0/population/World/today-and-tomorrow/');
+		const res = await $axios.$get("https://d6wn6bmjj722w.population.io/1.0/population/World/today-and-tomorrow/");
 		const totalPopulation = res.total_population[0].population;
 
 		return {
-			totalPopulation
+			totalPopulation,
 		};
 	},
+
 	data() {
 		return {
 			currentYear: 0,
@@ -31,20 +28,24 @@ export default {
 			lastScrollTop: 0,
 			firstScroll: true,
 			isScrolling: null,
-			future: false
+			future: false,
 		};
 	},
+
 	created() {
-		window.addEventListener('resize', this.handleResize);
+		window.addEventListener("resize", this.handleResize);
 	},
+
 	destroyed() {
-		window.removeEventListener('resize', this.handleResize);
+		window.removeEventListener("resize", this.handleResize);
 	},
+
 	mounted() {
 		this.handleScroll();
 		this.renderCanvas();
 		this.loopScene();
 	},
+
 	methods: {
 		handleScroll() {
 			const controller = new this.$ScrollMagic.Controller();
@@ -52,7 +53,7 @@ export default {
 			const scene = new this.$ScrollMagic.Scene({
 				duration: config.totalDuration,
 				triggerElement: this.$refs.container,
-				triggerHook: 0
+				triggerHook: 0,
 			})
 				.setPin(this.$refs.container)
 				.addTo(controller);
@@ -60,42 +61,42 @@ export default {
 			const startScene = new this.$ScrollMagic.Scene({
 				duration: config.hintDuration,
 				triggerElement: this.$refs.container,
-				triggerHook: 0
+				triggerHook: 0,
 			})
 				.addTo(controller);
 
 			const futureScene = new this.$ScrollMagic.Scene({
 				duration: config.futureDuration,
 				triggerElement: this.$refs.container,
-				triggerHook: 0
+				triggerHook: 0,
 			})
 				.addTo(controller);
 
-			scene.on('progress', (e) => {
+			scene.on("progress", (e) => {
 				this.animatePlayer(e.progress);
 				this.animateScene(e.progress, e.scrollDirection);
 			});
 
-			startScene.on('end', (e) => {
+			startScene.on("end", (e) => {
 				this.handleFirstScroll(e.scrollDirection);
 			});
 
-			futureScene.on('end', (e) => {
+			futureScene.on("end", (e) => {
 				this.handleFuture(e.scrollDirection);
 			});
 		},
 
 		handleFirstScroll(scrollDirection) {
-			if (scrollDirection === 'FORWARD') {
+			if (scrollDirection === "FORWARD") {
 				this.firstScroll = false;
 			}
 		},
 
 		handleFuture(scrollDirection) {
-			if (scrollDirection === 'FORWARD') {
+			if (scrollDirection === "FORWARD") {
 				this.future = true;
 				this.changeScene(true);
-			} else if (scrollDirection === 'REVERSE') {
+			} else if (scrollDirection === "REVERSE") {
 				this.future = false;
 				this.changeScene(false);
 			}
@@ -106,17 +107,17 @@ export default {
 
 			gsap.to(background, {
 				alpha: future ? 0 : 1,
-				duration: 3
+				duration: 3,
 			});
 
 			gsap.to(clouds, {
 				alpha: future ? 0.2 : 1,
-				duration: 2
+				duration: 2,
 			});
 
 			gsap.to(groundOverlay, {
 				alpha: future ? 0.4 : 0,
-				duration: 2
+				duration: 2,
 			});
 
 			if (future) {
@@ -126,23 +127,23 @@ export default {
 						y: this.$PIXI.screen.height + walkingPlayer.height,
 						alpha: 0,
 						duration: 0.6,
-						ease: 'back.in(3)'
+						ease: "back.in(3)",
 					})
 					.fromTo(robot, {
 						x: -robot.width,
-						angle: -10
+						angle: -10,
 					}, {
 						x: this.$PIXI.screen.width / 2,
 						duration: 0.6,
-						ease: 'Power2.in'
+						ease: "Power2.in",
 					})
 					.fromTo(robot, {
-						angle: -10
+						angle: -10,
 					}, {
 						angle: 0,
 						duration: 4,
-						ease: 'elastic.out(1.2, 0.2)'
-					}, '<0.3');
+						ease: "elastic.out(1.2, 0.2)",
+					}, "<0.3");
 			} else {
 				gsap
 					.timeline()
@@ -150,13 +151,13 @@ export default {
 						x: this.$PIXI.screen.width + robot.width,
 						duration: 1,
 						angle: -10,
-						ease: 'power2.in'
+						ease: "power2.in",
 					})
 					.to(walkingPlayer, {
 						y: this.$PIXI.screen.height - groundOverlay.height + 18,
 						alpha: 1,
 						duration: 0.6,
-						ease: 'back.out(3)'
+						ease: "back.out(3)",
 					});
 			}
 		},
@@ -170,7 +171,7 @@ export default {
 		animatePlayer: throttle(function(progress) {
 			if (!this.future) {
 				const { walkingPlayer } = sprites;
-				const speedSetter = gsap.quickSetter(walkingPlayer, 'animationSpeed');
+				const speedSetter = gsap.quickSetter(walkingPlayer, "animationSpeed");
 				const speed = getScrollSpeed(progress);
 
 				speedSetter(speed);
@@ -202,15 +203,15 @@ export default {
 			gsap.to(ground.tilePosition, {
 				x: gsap.utils.mapRange(0, 1, 0, config.groundSpeed, -progress),
 				duration: 0.2,
-				overwrite: true
+				overwrite: true,
 			});
 
 			// Reverse player position when scrolling backwards
 			if (prevDirection !== scrollDirection) {
 				gsap.to(walkingPlayer.scale, {
-					x: scrollDirection === 'REVERSE' ? -config.playerScale : config.playerScale,
+					x: scrollDirection === "REVERSE" ? -config.playerScale : config.playerScale,
 					duration: 0.2,
-					overwrite: true
+					overwrite: true,
 				});
 			}
 
@@ -233,6 +234,6 @@ export default {
 
 			walkingPlayer.x = (this.$PIXI.screen.width / 2);
 			walkingPlayer.y = this.$PIXI.screen.height - ground.height + 18;
-		}, 300)
-	}
+		}, 300),
+	},
 };

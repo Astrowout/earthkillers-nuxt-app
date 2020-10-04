@@ -1,4 +1,4 @@
-@import '~assets/scss/globals';
+@use '~/scss/globals';
 
 .year {
 	display: flex;
@@ -6,22 +6,22 @@
 }
 
 .label {
-	font-weight: $font-weight-bold;
-	font-size: $font-size-18;
-	color: $jungle-green-light;
-	margin-right: s(1.5);
+	font-weight: globals.$typography_font-weight-bold;
+	font-size: globals.$typography_font-size-18;
+	color: globals.$colors_jungle-green-light;
+	margin-right: globals.spacing_s(1.5);
 }
 
 .content {
-	font-size: $font-size-36;
-	color: $jungle-green;
+	font-size: globals.$typography_font-size-36;
+	color: globals.$colors_jungle-green;
 	overflow: hidden;
 
-	transition: color $animation-long;
+	transition: color globals.$animations_animation-long;
 }
 
 .is-future {
 	.content {
-		color: $dirty-white;
+		color: globals.$colors_dirty-white;
 	}
 }

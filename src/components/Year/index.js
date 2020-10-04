@@ -3,12 +3,12 @@ export default {
 		currentYear: {
 			type: Number,
 			required: true,
-			default: 0
+			default: 0,
 		},
 		isFuture: {
 			type: Boolean,
 			required: false,
-			default: false
-		}
-	}
+			default: false,
+		},
+	},
 };

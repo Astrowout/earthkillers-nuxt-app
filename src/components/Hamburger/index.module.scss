@@ -1,4 +1,4 @@
-@import '~assets/scss/globals';
+@use '~/scss/globals';
 
 .hamburger {
 	position: relative;
@@ -17,8 +17,8 @@
 .line {
 	display: inline-block;
 	height: 0.2rem;
-	background-color: $jungle-green-light;
-	border-radius: $border-radius-round;
+	background-color: globals.$colors_jungle-green-light;
+	border-radius: globals.$borders_radius-round;
 }
 
 .line--top,

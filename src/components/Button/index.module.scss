@@ -1,0 +1,75 @@
+@use '~/scss/globals';
+
+.root {
+	position: relative;
+	z-index: globals.$z-index_base;
+
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: globals.spacing_s(2) globals.spacing_s(6);
+
+	font-size: globals.$typography_font-size-18;
+	font-weight: globals.$typography_font-weight-bold;
+
+	color: globals.$colors_pure-white;
+	border-radius: globals.$borders_radius-base;
+	background-color: globals.$colors_faded-orange;
+
+	transition: transform globals.$animations_animation-hover;
+
+	@media screen and (min-width: globals.$breakpoints_viewport-4) {
+		font-size: globals.$typography_font-size-20;
+	}
+
+	@media screen and (min-width: globals.$breakpoints_viewport-12) {
+		font-size: globals.$typography_font-size-24;
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+
+		border-radius: globals.$borders_radius-base;
+		background-color: globals.$colors_faded-orange;
+		transition: transform globals.$animations_animation-back;
+		z-index: globals.$z-index_back;
+	}
+
+	&:hover {
+		&::after {
+			transform: scale(1.1);
+		}
+	}
+
+	&:active {
+		&::after {
+			transform: scale(1);
+		}
+	}
+}
+
+.icon {
+	width: 18px;
+}
+
+.iconBefore {
+	margin-right: globals.spacing_s(2);
+}
+
+.iconAfter {
+	margin-left: globals.spacing_s(2);
+}
+
+.root--secondary {
+	background-color: globals.$colors_jungle-green-light;
+
+	&:after {
+		background-color: globals.$colors_jungle-green-light;
+	}
+}

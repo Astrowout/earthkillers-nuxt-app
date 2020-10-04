@@ -1,7 +1,9 @@
+@use '~/scss/globals';
+
 // Poppins
 @font-face {
 	font-family: "Poppins";
-	font-weight: $font-weight-normal;
+	font-weight: globals.$typography_font-weight-normal;
 	font-style: normal;
 	src:
 		url("~assets/fonts/poppins/regular/poppins-regular.woff2") format("woff2"),
@@ -11,7 +13,7 @@
 
 @font-face {
 	font-family: "Poppins";
-	font-weight: $font-weight-bold;
+	font-weight: globals.$typography_font-weight-bold;
 	font-style: normal;
 	src:
 		url("~assets/fonts/poppins/bold/poppins-bold.woff2") format("woff2"),
@@ -22,7 +24,7 @@
 // Playfair Display
 @font-face {
 	font-family: "Playfair Display";
-	font-weight: $font-weight-normal;
+	font-weight: globals.$typography_font-weight-normal;
 	font-style: normal;
 	src:
 		url("~assets/fonts/playfair-display/bold/playfair-display-bold.woff2") format("woff2"),

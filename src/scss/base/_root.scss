@@ -1,31 +1,32 @@
+@use '~/scss/globals';
+
 html {
-	font-size: 62.5%;
 	height: 100%;
-	background-color: $sky-blue;
-	overflow-y: scroll;
+
+	color: globals.$colors_jungle-green;
+	background-color: globals.$colors_sky-blue;
+
 	scroll-behavior: smooth;
 	-webkit-overflow-scrolling: touch;
 }
 
 body {
-	height: 100%;
-
-	font-family: $font-family-primary;
-	line-height: $line-height-base;
+	font-family: globals.$typography_font-family-primary;
+	line-height: globals.$typography_line-height-base;
 	text-align: center;
 }
 
-#__nuxt {
-	height: 100%;
-}
-
-#__layout {
-	height: 100%;
-}
-
+html,
 body,
 a,
 button {
 	cursor: url('~assets/images/ui/cursor.png'), auto;
 	cursor: -webkit-image-set(url('~assets/images/ui/cursor.png') 1x, url('~assets/images/ui/cursor-x2.png') 2x), auto;
+}
+
+html,
+body,
+#__nuxt,
+#__layout {
+	height: 100%;
 }

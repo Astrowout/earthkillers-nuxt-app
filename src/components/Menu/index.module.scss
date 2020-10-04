@@ -1,4 +1,4 @@
-@import '~assets/scss/globals';
+@use '~/scss/globals';
 
 .menu {
 	position: fixed;
@@ -10,7 +10,7 @@
 	display: flex;
 	flex-direction: column;
 
-	background-color: $dirty-white;
+	background-color: globals.$colors_dirty-white;
 }
 
 .timeline {
@@ -20,47 +20,47 @@
 .info {
 	display: flex;
 	justify-content: space-between;
-	padding: s(5) s(8);
+	padding: globals.spacing_s(5) globals.spacing_s(8);
 
-	border-top: 0.1rem solid $jungle-green-light;
+	border-top: 0.1rem solid globals.$colors_jungle-green-light;
 
-	background-color: $pure-white;
+	background-color: globals.$colors_pure-white;
 }
 
 .section {
 	max-width: 45rem;
 
 	& + .section {
-		margin-left: s(12);
+		margin-left: globals.spacing_s(12);
 	}
 }
 
 .title {
-	margin-bottom: s(3);
+	margin-bottom: globals.spacing_s(3);
 
-	font-family: $font-family-secondary;
-	font-size: $font-size-30;
+	font-family: globals.$typography_font-family-secondary;
+	font-size: globals.$typography_font-size-30;
 	text-align: left;
 
-	color: $faded-orange;
+	color: globals.$colors_faded-orange;
 }
 
 .content {
-	font-size: $font-size-18;
+	font-size: globals.$typography_font-size-18;
 	text-align: left;
 
-	color: $jungle-green-faded;
+	color: globals.$colors_jungle-green-faded;
 }
 
 .link {
 	position: relative;
 
 	display: inline-block;
-	margin-bottom: s(1);
+	margin-bottom: globals.spacing_s(1);
 
-	font-size: $font-size-18;
+	font-size: globals.$typography_font-size-18;
 
-	color: $jungle-green-faded;
+	color: globals.$colors_jungle-green-faded;
 
 	&::after {
 		content: '';
@@ -71,23 +71,23 @@
 		width: 100%;
 		height: 0.1rem;
 
-		background-color: $jungle-green-faded;
+		background-color: globals.$colors_jungle-green-faded;
 	}
 }
 
 .madeby {
 	display: inline-block;
-	margin-bottom: s(1);
+	margin-bottom: globals.spacing_s(1);
 }
 
 .socials {
-	margin-top: s(2);
+	margin-top: globals.spacing_s(2);
 }
 
 .social {
-	color: $jungle-green-faded;
+	color: globals.$colors_jungle-green-faded;
 
 	& + .social {
-		margin-left: s(1);
+		margin-left: globals.spacing_s(1);
 	}
 }
