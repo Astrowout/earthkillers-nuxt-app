@@ -17,7 +17,7 @@
 	border-radius: globals.$borders_radius-base;
 	background-color: globals.$colors_faded-orange;
 
-	transition: transform globals.$animations_animation-hover;
+	transition: transform globals.$animations_hover;
 
 	@media screen and (min-width: globals.$breakpoints_viewport-4) {
 		font-size: globals.$typography_font-size-20;
@@ -37,7 +37,7 @@
 
 		border-radius: globals.$borders_radius-base;
 		background-color: globals.$colors_faded-orange;
-		transition: transform globals.$animations_animation-back;
+		transition: transform globals.$animations_back;
 		z-index: globals.$z-index_back;
 	}
 
@@ -56,10 +56,14 @@
 
 .icon {
 	width: 18px;
+
+	transition: transform globals.$animations_hover;
 }
 
 .iconBefore {
 	margin-right: globals.spacing_s(2);
+
+	transform: rotate(180deg);
 }
 
 .iconAfter {
@@ -70,6 +74,12 @@
 	background-color: globals.$colors_jungle-green-light;
 
 	&:after {
-		background-color: globals.$colors_jungle-green-light;
+		content: none;
+	}
+
+	&:hover {
+		.iconBefore {
+			transform: rotate(180deg) translate3d(30%, 0, 0);
+		}
 	}
 }
