@@ -1,9 +1,4 @@
-const timeout = (s) => {
-	return new Promise(resolve => setTimeout(resolve, s));
-};
-
-export default async({ $config }) => {
-	console.log($config.BASE_URL);
+export default async() => {
 	// TODO: change this to 3000
-	await timeout(1000);
+	await new Promise(resolve => setTimeout(resolve, 1000));
 };

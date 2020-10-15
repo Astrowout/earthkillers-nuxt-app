@@ -41,51 +41,11 @@ export default {
 	},
 
 	mounted() {
-		this.handleScroll();
 		this.renderCanvas();
 		this.loopScene();
 	},
 
 	methods: {
-		handleScroll() {
-			const controller = new this.$ScrollMagic.Controller();
-
-			const scene = new this.$ScrollMagic.Scene({
-				duration: config.totalDuration,
-				triggerElement: this.$refs.container,
-				triggerHook: 0,
-			})
-				.setPin(this.$refs.container)
-				.addTo(controller);
-
-			const startScene = new this.$ScrollMagic.Scene({
-				duration: config.hintDuration,
-				triggerElement: this.$refs.container,
-				triggerHook: 0,
-			})
-				.addTo(controller);
-
-			const futureScene = new this.$ScrollMagic.Scene({
-				duration: config.futureDuration,
-				triggerElement: this.$refs.container,
-				triggerHook: 0,
-			})
-				.addTo(controller);
-
-			scene.on("progress", (e) => {
-				this.animatePlayer(e.progress);
-				this.animateScene(e.progress, e.scrollDirection);
-			});
-
-			startScene.on("end", (e) => {
-				this.handleFirstScroll(e.scrollDirection);
-			});
-
-			futureScene.on("end", (e) => {
-				this.handleFuture(e.scrollDirection);
-			});
-		},
-
 		handleFirstScroll(scrollDirection) {
 			if (scrollDirection === "FORWARD") {
 				this.firstScroll = false;
