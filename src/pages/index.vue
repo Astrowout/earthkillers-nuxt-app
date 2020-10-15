@@ -1,13 +1,11 @@
 <template>
 	<div class="l-container">
 		<img
-			:class="[$style.leaves, $style.leaves1]"
 			src="~/assets/images/ui/leaves1.svg"
 			alt="Leaves"
 		>
 
 		<img
-			:class="[$style.leaves, $style.leaves2]"
 			src="~/assets/images/ui/leaves2.svg"
 			alt="Leaves"
 		>
@@ -33,4 +31,3 @@
 </template>
 
 <script src="./index.js"></script>
-<style src="./index.module.scss" module lang="scss"></style>
