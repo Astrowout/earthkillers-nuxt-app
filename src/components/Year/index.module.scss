@@ -8,13 +8,13 @@
 .label {
 	font-weight: globals.$typography_font-weight-semibold;
 	font-size: globals.$typography_font-size-18;
-	color: globals.$colors_jungle-green-light;
+	color: globals.$colors_future-dark;
 	margin-right: globals.spacing_s(1.5);
 }
 
 .content {
 	font-size: globals.$typography_font-size-36;
-	color: globals.$colors_jungle-green;
+	color: globals.$colors_future-dark;
 	overflow: hidden;
 
 	transition: color globals.$animations_long;

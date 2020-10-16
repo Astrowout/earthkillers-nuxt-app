@@ -22,7 +22,7 @@
 	justify-content: space-between;
 	padding: globals.spacing_s(5) globals.spacing_s(8);
 
-	border-top: 0.1rem solid globals.$colors_jungle-green-light;
+	border-top: 0.1rem solid globals.$colors_future-dark;
 
 	background-color: globals.$colors_pure-white;
 }
@@ -42,14 +42,14 @@
 	font-size: globals.$typography_font-size-30;
 	text-align: left;
 
-	color: globals.$colors_faded-orange;
+	color: globals.$colors_mars;
 }
 
 .content {
 	font-size: globals.$typography_font-size-18;
 	text-align: left;
 
-	color: globals.$colors_jungle-green-faded;
+	color: globals.$colors_future-dark;
 }
 
 .link {
@@ -60,7 +60,7 @@
 
 	font-size: globals.$typography_font-size-18;
 
-	color: globals.$colors_jungle-green-faded;
+	color: globals.$colors_future-dark;
 
 	&::after {
 		content: '';
@@ -71,7 +71,7 @@
 		width: 100%;
 		height: 0.1rem;
 
-		background-color: globals.$colors_jungle-green-faded;
+		background-color: globals.$colors_future-dark;
 	}
 }
 
@@ -85,7 +85,7 @@
 }
 
 .social {
-	color: globals.$colors_jungle-green-faded;
+	color: globals.$colors_future-dark;
 
 	& + .social {
 		margin-left: globals.spacing_s(1);

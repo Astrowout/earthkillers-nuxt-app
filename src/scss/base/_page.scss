@@ -1,0 +1,19 @@
+@use '~/scss/globals';
+
+:root {
+	height: 100%;
+	overflow-x: hidden;
+
+	color: globals.$colors_future-dark;
+	background-color: globals.$colors_air;
+
+	scroll-behavior: smooth;
+	-webkit-overflow-scrolling: touch;
+}
+
+body {
+	font-family: globals.$typography_font-family-primary;
+	line-height: globals.$typography_line-height-base;
+	text-align: center;
+	height: 100%;
+}

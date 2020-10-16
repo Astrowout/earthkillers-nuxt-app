@@ -15,7 +15,7 @@
 
 	color: globals.$colors_pure-white;
 	border-radius: globals.$borders_radius-base;
-	background-color: globals.$colors_faded-orange;
+	background-color: globals.$colors_mars;
 
 	transition: transform globals.$animations_hover;
 
@@ -36,7 +36,7 @@
 		height: 100%;
 
 		border-radius: globals.$borders_radius-base;
-		background-color: globals.$colors_faded-orange;
+		background-color: globals.$colors_mars;
 		transition: transform globals.$animations_back;
 		z-index: globals.$z-index_back;
 	}
@@ -71,7 +71,7 @@
 }
 
 .root--secondary {
-	background-color: globals.$colors_jungle-green-light;
+	background-color: globals.$colors_future-dark;
 
 	&:after {
 		content: none;

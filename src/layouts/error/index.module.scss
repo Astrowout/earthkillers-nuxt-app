@@ -6,18 +6,18 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: globals.$colors_jungle-green;
+	background-color: globals.$colors_future-dark;
 }
 
 .title {
 	font-family: globals.$typography_font-family-secondary;
 	font-size: globals.$typography_font-size-48;
 
-	color: globals.$colors_sky-blue;
+	color: globals.$colors_air;
 }
 
 .text {
 	font-size: globals.$typography_font-size-20;
 
-	color: globals.$colors_jungle-green-light;
+	color: globals.$colors_future-dark;
 }
