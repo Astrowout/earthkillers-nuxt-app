@@ -1,35 +1,50 @@
 <template>
 	<ConditionalWrapper
-		:class="[$style.root, {
-			[$style['root--secondary']]: secondary
-		}]"
+		:class="$style.root"
 		:url="url"
+		@mousemove.native="handleMouseMove"
+		@mouseleave.native="handleMouseLeave"
 	>
-		<Icon
-			v-if="iconBefore"
-			:name="iconBefore"
-			:class="[$style.icon, $style.iconBefore]"
-		/>
+		<div
+			ref="content"
+			:class="[$style.content, {
+				[$style['button--secondary']]: secondary
+			}]"
+		>
+			<div
+				v-if="iconBefore"
+				:class="[$style.iconWrapper, $style.iconBefore]"
+			>
+				<Icon
+					:name="iconBefore"
+					:class="[$style.icon]"
+				/>
 
-		<Icon
-			v-if="iconBefore && hoverIcon"
-			:name="hoverIcon"
-			:class="[$style.hoverIcon, $style.iconBefore]"
-		/>
+				<Icon
+					v-if="hoverIcon"
+					:name="hoverIcon"
+					:class="[$style.hoverIcon]"
+				/>
+			</div>
 
-		<slot />
+			<slot />
 
-		<Icon
-			v-if="iconAfter"
-			:name="iconAfter"
-			:class="[$style.icon, $style.iconAfter]"
-		/>
+			<div
+				v-if="iconAfter"
+				:class="[$style.iconWrapper, $style.iconAfter]"
+			>
+				<Icon
+					:name="iconAfter"
+					:class="[$style.icon]"
+				/>
 
-		<Icon
-			v-if="iconAfter && hoverIcon"
-			:name="hoverIcon"
-			:class="[$style.hoverIcon, $style.iconAfter]"
-		/>
+				<Icon
+					v-if="hoverIcon"
+					:name="hoverIcon"
+					:class="[$style.hoverIcon]"
+				/>
+			</div>
+		</div>
 	</ConditionalWrapper>
 </template>
 

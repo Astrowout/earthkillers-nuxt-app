@@ -1,12 +1,17 @@
 @use '~/assets/scss/settings/colors';
 
 @function soft($color) {
-	@return 0 16px 40px rgba($color, 0.6);
+	@return 0 16px 40px rgba($color, 0.8);
 }
 
 @function neumorphism($color) {
 	@return inset -8px 8px 8px lighten($color, 5%),
             inset 8px -8px 8px darken($color, 5%);
+}
+
+@function neumorphism-inverted($color) {
+	@return inset -16px 16px 32px darken($color, 5%),
+            inset 16px -16px 32px lighten($color, 5%);
 }
 
 $text: 0 4px 16px rgba(colors.$night, 0.16);

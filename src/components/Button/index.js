@@ -1,3 +1,5 @@
+import { gsap } from "gsap";
+
 export default {
 	props: {
 		url: {
@@ -24,6 +26,35 @@ export default {
 			type: String,
 			default: null,
 			required: false,
+		},
+	},
+
+	methods: {
+		handleMouseMove(e) {
+			const xMovement = 0.25;
+			const yMovement = 0.4;
+
+			const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+			const boundingRect = this.$el.getBoundingClientRect();
+			const relX = e.pageX - boundingRect.left;
+			const relY = e.pageY - boundingRect.top;
+
+			gsap.to(this.$refs.content, {
+				x: (relX - boundingRect.width / 2) * xMovement,
+				y: (relY - boundingRect.height / 2 - scrollTop) * yMovement,
+				ease: "power1",
+				duration: 0.6,
+			});
+		},
+
+		handleMouseLeave() {
+			gsap.to(this.$refs.content, {
+				x: 0,
+				y: 0,
+				ease: "power3",
+				duration: 0.6,
+				clearProps: "all",
+			});
 		},
 	},
 };

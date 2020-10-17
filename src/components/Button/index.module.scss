@@ -1,8 +1,40 @@
 @use '~/assets/scss/globals';
 
 .root {
+	display: inline-block;
 	position: relative;
 
+	outline: none;
+	border-radius: globals.$borders_radius-base;
+
+	box-shadow: globals.shadows_neumorphism-inverted(globals.$colors_air);
+
+	&:hover {
+		.content {
+			.hoverIcon {
+				opacity: 1;
+			}
+
+			.icon {
+				opacity: 0;
+			}
+
+			&::after {
+				opacity: 1;
+			}
+		}
+	}
+
+	&:focus {
+		.content {
+			box-shadow:
+				globals.shadows_neumorphism(globals.$colors_mars),
+				0 0 0 4px globals.$colors_mars;
+		}
+	}
+}
+
+.content {
 	display: flex;
 	align-items: baseline;
 	justify-content: center;
@@ -17,9 +49,6 @@
 	background-color: globals.$colors_mars;
 	box-shadow: globals.shadows_neumorphism(globals.$colors_mars);
 	text-shadow: globals.$shadows_text;
-
-	will-change: transform;
-	transition: transform globals.$animations_hover;
 
 	@media screen and (max-width: globals.$breakpoints_viewport-7) {
 		padding: globals.s(2) globals.s(6);
@@ -42,38 +71,17 @@
 		width: 100%;
 		height: 100%;
 
-		opacity: 0.5;
+		opacity: 0.6;
 		border-radius: globals.$borders_radius-base;
 		box-shadow: globals.shadows_soft(globals.$colors_mars);
 
 		transition: opacity globals.$animations_hover;
 	}
-
-	&:hover {
-		transform: scale(1.05);
-
-		.hoverIcon {
-			display: block;
-
-			transform: translate3d(globals.s(0.5), 0, 0);
-		}
-
-		.icon {
-			display: none;
-		}
-
-		&::after {
-			opacity: 1;
-		}
-	}
-
-	&:focus {
-		transform: scale(1);
-	}
 }
 
-.icon,
-.hoverIcon {
+.iconWrapper {
+	position: relative;
+
 	width: globals.s(4);
 	height: globals.s(4);
 
@@ -83,21 +91,32 @@
 	}
 }
 
+.icon,
+.hoverIcon {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+
+	transition: opacity 0s linear 0.1s;
+}
+
 .iconBefore {
 	margin-right: globals.s(1);
 
 	transform: rotate(180deg);
 }
 
-.hoverIcon {
-	display: none;
-}
-
 .iconAfter {
 	margin-left: globals.s(1);
 }
 
-.root--secondary {
+.hoverIcon {
+	opacity: 0;
+}
+
+.button--secondary {
 	background-color: globals.$colors_dark;
 
 	&:after {
