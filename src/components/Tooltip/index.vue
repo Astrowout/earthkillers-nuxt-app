@@ -2,7 +2,7 @@
 	<div
 		:class="$style.tooltip"
 	>
-		test
+		<slot />
 	</div>
 </template>
 

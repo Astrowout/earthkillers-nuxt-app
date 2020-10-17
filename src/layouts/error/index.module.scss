@@ -1,23 +1,31 @@
-@use '~/scss/globals';
+@use '~/assets/scss/globals';
 
 .root {
+	width: 100%;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: globals.$colors_dark;
+	background-color: globals.$colors_night;
+}
+
+.image {
+	width: 240px;
+	max-width: 80%;
 }
 
 .title {
+	margin-top: globals.s(5);
+
 	font-family: globals.$typography_font-family-secondary;
 	font-size: globals.$typography_font-size-48;
 
-	color: globals.$colors_air;
+	color: globals.$colors_ice;
 }
 
 .text {
-	font-size: globals.$typography_font-size-20;
+	font-size: globals.$typography_font-size-18;
 
-	color: globals.$colors_dark;
+	color: globals.$colors_ice;
 }

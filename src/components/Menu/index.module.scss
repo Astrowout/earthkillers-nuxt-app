@@ -1,4 +1,4 @@
-@use '~/scss/globals';
+@use '~/assets/scss/globals';
 
 .menu {
 	position: fixed;
@@ -20,7 +20,7 @@
 .info {
 	display: flex;
 	justify-content: space-between;
-	padding: globals.spacing_s(5) globals.spacing_s(8);
+	padding: globals.s(5) globals.s(8);
 
 	border-top: 0.1rem solid globals.$colors_dark;
 
@@ -31,12 +31,12 @@
 	max-width: 45rem;
 
 	& + .section {
-		margin-left: globals.spacing_s(12);
+		margin-left: globals.s(12);
 	}
 }
 
 .title {
-	margin-bottom: globals.spacing_s(3);
+	margin-bottom: globals.s(3);
 
 	font-family: globals.$typography_font-family-secondary;
 	font-size: globals.$typography_font-size-30;
@@ -56,7 +56,7 @@
 	position: relative;
 
 	display: inline-block;
-	margin-bottom: globals.spacing_s(1);
+	margin-bottom: globals.s(1);
 
 	font-size: globals.$typography_font-size-18;
 
@@ -77,17 +77,17 @@
 
 .madeby {
 	display: inline-block;
-	margin-bottom: globals.spacing_s(1);
+	margin-bottom: globals.s(1);
 }
 
 .socials {
-	margin-top: globals.spacing_s(2);
+	margin-top: globals.s(2);
 }
 
 .social {
 	color: globals.$colors_dark;
 
 	& + .social {
-		margin-left: globals.spacing_s(1);
+		margin-left: globals.s(1);
 	}
 }

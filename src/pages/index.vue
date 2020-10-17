@@ -1,6 +1,6 @@
 <template>
-	<div class="l-container">
-		<h1>
+	<main class="l-container l-container--max">
+		<h1 class="u-margin-top:16">
 			{{ $t('home.title') }}
 		</h1>
 
@@ -10,12 +10,13 @@
 
 		<Button
 			:url="localePath($pathNames.stroll)"
-			icon-after="arrow"
+			icon-after="walking"
+			hover-icon="running"
 			class="u-margin-top:64"
 		>
 			{{ $t('home.cta') }}
 		</Button>
-	</div>
+	</main>
 </template>
 
 <script src="./index.js"></script>

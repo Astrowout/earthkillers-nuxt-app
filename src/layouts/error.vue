@@ -1,5 +1,11 @@
 <template>
-	<div :class="$style.root">
+	<main :class="$style.root">
+		<img
+			src="~/assets/images/planet.svg"
+			:alt="$t('error.image')"
+			:class="$style.image"
+		>
+
 		<h1 :class="$style.title">
 			{{ $t('error.title') }}
 		</h1>
@@ -16,7 +22,7 @@
 		>
 			{{ $t('error.cta') }}
 		</Button>
-	</div>
+	</main>
 </template>
 
 <script src="./error/index.js"></script>

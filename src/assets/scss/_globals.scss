@@ -1,8 +1,9 @@
 // Settings
 @forward './settings/typography' as typography_*;
 @forward './settings/z-index' as z-index_*;
-@forward './settings/spacing' as spacing_*;
+@forward './settings/spacing';
 @forward './settings/borders' as borders_*;
+@forward './settings/shadows' as shadows_*;
 @forward './settings/breakpoints' as breakpoints_*;
 @forward './settings/animations' as animations_*;
 @forward './settings/colors' as colors_*;

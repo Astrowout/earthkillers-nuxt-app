@@ -20,5 +20,10 @@ export default {
 			default: null,
 			required: false,
 		},
+		hoverIcon: {
+			type: String,
+			default: null,
+			required: false,
+		},
 	},
 };

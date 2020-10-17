@@ -1,73 +1,100 @@
-@use '~/scss/globals';
+@use '~/assets/scss/globals';
 
 .root {
 	position: relative;
-	z-index: globals.$z-index_base;
 
-	display: inline-flex;
-	align-items: center;
+	display: flex;
+	align-items: baseline;
 	justify-content: center;
 	text-align: center;
-	padding: globals.spacing_s(2) globals.spacing_s(6);
+	padding: globals.s(2) globals.s(8);
 
-	font-size: globals.$typography_font-size-18;
+	font-size: globals.$typography_font-size-24;
 	font-weight: globals.$typography_font-weight-semibold;
 
 	color: globals.$colors_ice;
 	border-radius: globals.$borders_radius-base;
 	background-color: globals.$colors_mars;
+	box-shadow: globals.shadows_neumorphism(globals.$colors_mars);
+	text-shadow: globals.$shadows_text;
 
+	will-change: transform;
 	transition: transform globals.$animations_hover;
 
-	@media screen and (min-width: globals.$breakpoints_viewport-4) {
+	@media screen and (max-width: globals.$breakpoints_viewport-7) {
+		padding: globals.s(2) globals.s(6);
+
 		font-size: globals.$typography_font-size-20;
 	}
 
-	@media screen and (min-width: globals.$breakpoints_viewport-12) {
-		font-size: globals.$typography_font-size-24;
+	@media screen and (max-width: globals.$breakpoints_viewport-4) {
+		padding: globals.s(2) globals.s(5);
+
+		font-size: globals.$typography_font-size-18;
 	}
 
 	&::after {
 		content: "";
+
 		position: absolute;
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 100%;
 
+		opacity: 0.5;
 		border-radius: globals.$borders_radius-base;
-		background-color: globals.$colors_mars;
-		transition: transform globals.$animations_back;
-		z-index: globals.$z-index_back;
+		box-shadow: globals.shadows_soft(globals.$colors_mars);
+
+		transition: opacity globals.$animations_hover;
 	}
 
 	&:hover {
+		transform: scale(1.05);
+
+		.hoverIcon {
+			display: block;
+
+			transform: translate3d(globals.s(0.5), 0, 0);
+		}
+
+		.icon {
+			display: none;
+		}
+
 		&::after {
-			transform: scale(1.1);
+			opacity: 1;
 		}
 	}
 
-	&:active {
-		&::after {
-			transform: scale(1);
-		}
+	&:focus {
+		transform: scale(1);
 	}
 }
 
-.icon {
-	width: 18px;
+.icon,
+.hoverIcon {
+	width: globals.s(4);
+	height: globals.s(4);
 
-	transition: transform globals.$animations_hover;
+	@media screen and (max-width: globals.$breakpoints_viewport-7) {
+		width: globals.s(3);
+		height: globals.s(3);
+	}
 }
 
 .iconBefore {
-	margin-right: globals.spacing_s(2);
+	margin-right: globals.s(1);
 
 	transform: rotate(180deg);
 }
 
+.hoverIcon {
+	display: none;
+}
+
 .iconAfter {
-	margin-left: globals.spacing_s(2);
+	margin-left: globals.s(1);
 }
 
 .root--secondary {

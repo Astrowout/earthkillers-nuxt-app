@@ -21,6 +21,7 @@ export default {
 			throttledPopulationArray: ["0"],
 		};
 	},
+
 	watch: {
 		currentPopulation: throttle(function(newValue, oldValue) {
 			if (newValue === oldValue) {

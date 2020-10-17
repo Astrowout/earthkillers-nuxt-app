@@ -1,4 +1,4 @@
-@use '~/scss/globals';
+@use '~/assets/scss/globals';
 
 .container {
 	overflow: hidden;
@@ -13,8 +13,8 @@
 }
 
 .year {
-	top: globals.spacing_s(3);
-	left: globals.spacing_s(4);
+	top: globals.s(3);
+	left: globals.s(4);
 }
 
 .population {

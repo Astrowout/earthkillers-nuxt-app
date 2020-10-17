@@ -1,8 +1,11 @@
+@use '~/assets/scss/globals';
+
 .l-container {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	margin: 0 auto;
-	width: calc(100% - 32px);
+	width: calc(100% - #{globals.s(4)});
 }
 
 .l-container--max {

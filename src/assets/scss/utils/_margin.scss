@@ -1,0 +1,21 @@
+@use '~/assets/scss/globals';
+
+.u-margin-top\:16 {
+	margin-top: globals.s(2);
+
+	@media screen and (max-width: globals.$breakpoints_viewport-4) {
+		margin-top: globals.s(1);
+	}
+}
+
+.u-margin-top\:24 {
+	margin-top: globals.s(3);
+}
+
+.u-margin-top\:64 {
+	margin-top: globals.s(8);
+
+	@media screen and (max-width: globals.$breakpoints_viewport-4) {
+		margin-top: globals.s(4);
+	}
+}

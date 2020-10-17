@@ -1,14 +1,8 @@
-// =============================================================================
-// Imports
-// =============================================================================
-import Arrow from "~/assets/icons/arrow.svg?inline";
+import arrow from "~/assets/icons/arrow.svg?inline";
+import walking from "~/assets/icons/walking.svg?inline";
+import running from "~/assets/icons/running.svg?inline";
 
-// =============================================================================
-// Definition
-// =============================================================================
 export default {
-	// Props
-	// -------------------------------------------------------------------------
 	props: {
 		name: {
 			type: String,
@@ -16,9 +10,9 @@ export default {
 		},
 	},
 
-	// Components
-	// -------------------------------------------------------------------------
 	components: {
-		Arrow,
+		arrow,
+		walking,
+		running,
 	},
 };

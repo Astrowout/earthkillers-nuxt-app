@@ -1,4 +1,4 @@
-@use '~/scss/globals';
+@use '~/assets/scss/globals';
 
 .year {
 	display: flex;
@@ -9,7 +9,7 @@
 	font-weight: globals.$typography_font-weight-semibold;
 	font-size: globals.$typography_font-size-18;
 	color: globals.$colors_dark;
-	margin-right: globals.spacing_s(1.5);
+	margin-right: globals.s(1.5);
 }
 
 .content {

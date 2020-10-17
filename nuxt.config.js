@@ -25,7 +25,7 @@ export default {
 	** Global CSS
 	*/
 	css: [
-		"~/scss/main.scss",
+		"~/assets/scss/main.scss",
 	],
 	/*
 	** Auto import components

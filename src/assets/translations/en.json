@@ -22,8 +22,9 @@
 		}
 	},
 	"error": {
-		"title": "History hasn't come this far.",
+		"image": "Another planet",
+		"title": "Seems like you found another planet.",
 		"text": "Choose another path to continue your journey.",
-		"cta": "Walk back home"
+		"cta": "Go back to earth"
 	}
 }

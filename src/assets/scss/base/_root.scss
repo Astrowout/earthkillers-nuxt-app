@@ -1,0 +1,28 @@
+@use '~/assets/scss/globals';
+
+h1 {
+	font-family: globals.$typography_font-family-secondary;
+	font-size: globals.$typography_font-size-72;
+	font-weight: globals.$typography_font-weight-normal;
+
+	@media screen and (max-width: globals.$breakpoints_viewport-7) {
+		font-size: globals.$typography_font-size-48;
+	}
+
+	@media screen and (max-width: globals.$breakpoints_viewport-4) {
+		font-size: globals.$typography_font-size-24;
+	}
+}
+
+h2 {
+	font-size: globals.$typography_font-size-24;
+	font-weight: globals.$typography_font-weight-normal;
+
+	@media screen and (max-width: globals.$breakpoints_viewport-7) {
+		font-size: globals.$typography_font-size-20;
+	}
+
+	@media screen and (max-width: globals.$breakpoints_viewport-4) {
+		font-size: globals.$typography_font-size-14;
+	}
+}

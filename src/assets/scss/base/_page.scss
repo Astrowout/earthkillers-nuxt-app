@@ -1,7 +1,6 @@
-@use '~/scss/globals';
+@use '~/assets/scss/globals';
 
 :root {
-	height: 100%;
 	overflow-x: hidden;
 
 	color: globals.$colors_dark;
@@ -15,5 +14,18 @@ body {
 	font-family: globals.$typography_font-family-primary;
 	line-height: globals.$typography_line-height-base;
 	text-align: center;
+}
+
+:root,
+body,
+#__nuxt,
+#__layout {
 	height: 100%;
+}
+
+#__layout {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
