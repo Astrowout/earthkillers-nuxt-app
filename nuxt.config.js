@@ -1,4 +1,5 @@
 import enTranslations from "./src/assets/translations/en.json";
+import head from "./head.js";
 
 export default {
 	target: "static",
@@ -12,17 +13,7 @@ export default {
 	/*
 	** Headers of the page
 	*/
-	head: {
-		title: "Loading...",
-		meta: [
-			{ charset: "utf-8" },
-			{ name: "viewport", content: "width=device-width, initial-scale=1" },
-			{ hid: "description", name: "description", content: process.env.npm_package_description || "" },
-		],
-		link: [
-			{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-		],
-	},
+	head,
 	/*
 	** Customize the progress-bar color
 	*/
@@ -89,9 +80,16 @@ export default {
 	** PWA config
 	*/
 	pwa: {
+		icon: {
+			plugin: false,
+		},
+		meta: {
+			mobileAppIOS: true,
+			theme_color: "#293D4A",
+		},
 		manifest: {
 			name: "Population Growth Through History",
-			short_name: "Earthkillers",
+			short_name: "Human Nature",
 			display: "standalone",
 			lang: "en",
 		},

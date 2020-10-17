@@ -6,7 +6,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: globals.$colors_future-dark;
+	background-color: globals.$colors_dark;
 }
 
 .title {
@@ -19,5 +19,5 @@
 .text {
 	font-size: globals.$typography_font-size-20;
 
-	color: globals.$colors_future-dark;
+	color: globals.$colors_dark;
 }

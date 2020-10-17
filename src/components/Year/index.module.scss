@@ -8,13 +8,13 @@
 .label {
 	font-weight: globals.$typography_font-weight-semibold;
 	font-size: globals.$typography_font-size-18;
-	color: globals.$colors_future-dark;
+	color: globals.$colors_dark;
 	margin-right: globals.spacing_s(1.5);
 }
 
 .content {
 	font-size: globals.$typography_font-size-36;
-	color: globals.$colors_future-dark;
+	color: globals.$colors_dark;
 	overflow: hidden;
 
 	transition: color globals.$animations_long;
@@ -22,6 +22,6 @@
 
 .is-future {
 	.content {
-		color: globals.$colors_dirty-white;
+		color: globals.$colors_ice;
 	}
 }

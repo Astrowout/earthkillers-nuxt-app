@@ -11,14 +11,14 @@
 .label {
 	font-weight: globals.$typography_font-weight-semibold;
 	font-size: globals.$typography_font-size-18;
-	color: globals.$colors_future-dark;
+	color: globals.$colors_dark;
 }
 
 .content {
 	display: block;
 	overflow: hidden;
 	font-size: globals.$typography_font-size-48;
-	color: globals.$colors_future-dark;
+	color: globals.$colors_dark;
 }
 
 .char {
@@ -30,6 +30,6 @@
 
 .is-future {
 	.content {
-		color: globals.$colors_dirty-white;
+		color: globals.$colors_ice;
 	}
 }
