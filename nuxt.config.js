@@ -3,7 +3,6 @@ import head from "./head.js";
 
 export default {
 	target: "static",
-	ssr: false,
 	/*
 	** Env variables
 	*/
@@ -17,13 +16,11 @@ export default {
 	/*
 	** Customize the progress-bar color
 	*/
-	loading: {
-		color: "#07806A",
-	},
+	loading: false,
 	/*
 	** Customize the SPA loading indicator
 	*/
-	loadingIndicator: "~/loader.html",
+	loadingIndicator: false,
 	/*
 	** Global CSS
 	*/
@@ -44,14 +41,10 @@ export default {
 	** Plugins to load before mounting the App
 	*/
 	plugins: [
-		{
-			src: "~/plugins/loader-timeout.js",
-			mode: "client",
-		},
-		{
-			src: "~/plugins/pixi.js",
-			mode: "client",
-		},
+		// {
+		// 	src: "~/plugins/pixi.js",
+		// 	mode: "client",
+		// },
 		{
 			src: "~/plugins/routes.js",
 		},
@@ -66,6 +59,8 @@ export default {
 		"@nuxtjs/stylelint-module",
 		// Doc: https://github.com/nuxt-community/svg-module
 		"@nuxtjs/svg",
+		// Doc: https://github.com/nuxt-community/pwa-module
+		"@nuxtjs/pwa",
 	],
 	/*
 	** Nuxt.js modules
@@ -73,7 +68,6 @@ export default {
 	modules: [
 		// Doc: https://axios.nuxtjs.org/usage
 		"@nuxtjs/axios",
-		"@nuxtjs/pwa",
 		"nuxt-i18n",
 	],
 	/*
@@ -90,7 +84,7 @@ export default {
 		manifest: {
 			name: "Population Growth Through History",
 			short_name: "Human Nature",
-			display: "standalone",
+			display: "fullscreen",
 			lang: "en",
 		},
 	},
