@@ -19,13 +19,7 @@ body {
 :root,
 body,
 #__nuxt,
-#__layout {
+#__layout,
+#__default {
 	height: 100%;
-}
-
-#__layout {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 }

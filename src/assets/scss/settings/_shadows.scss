@@ -10,8 +10,8 @@
 }
 
 @function neumorphism-inverted($color) {
-	@return inset -16px 16px 32px darken($color, 5%),
-            inset 16px -16px 32px lighten($color, 5%);
+	@return inset -8px 8px 16px darken($color, 5%),
+            inset 8px -8px 16px lighten($color, 5%);
 }
 
 $text: 0 4px 16px rgba(colors.$night, 0.16);

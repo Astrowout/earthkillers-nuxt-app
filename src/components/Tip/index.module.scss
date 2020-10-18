@@ -1,0 +1,5 @@
+@use '~/assets/scss/globals';
+
+.root {
+	color: globals.$colors_dark-faded;
+}

@@ -6,6 +6,20 @@
 	align-items: center;
 	margin: 0 auto;
 	width: calc(100% - #{globals.s(4)});
+	height: 100%;
+}
+
+.l-container__body {
+	flex-grow: 1;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.l-container__footer {
+	margin: globals.s(4) 0;
 }
 
 .l-container--max {
