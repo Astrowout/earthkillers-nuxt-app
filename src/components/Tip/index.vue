@@ -7,13 +7,13 @@
 		@leave="leave"
 	>
 		<p
-			:key="tip"
+			:key="htmlTip"
 			:class="[$style.root,
 				{
 					[$style.placeholder]: tip === 'placeholder'
 				}
 			]"
-			v-html="tip"
+			v-html="htmlTip"
 		/>
 		</transtion>
 	</transition>

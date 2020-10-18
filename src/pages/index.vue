@@ -1,15 +1,18 @@
 <template>
 	<main class="l-container l-container--max">
 		<div class="l-container__body">
-			<h1 class="u-margin-top:16">
-				{{ $t('home.title') }}
-			</h1>
+			<h1
+				:class="$style.title"
+				v-html="htmlTitle"
+			/>
 
-			<h2 class="u-order:first u-color:mars">
-				{{ $t('home.subtitle') }}
-			</h2>
+			<h2
+				:class="$style.subtitle"
+				v-html="htmlSubtitle"
+			/>
 
 			<Button
+				ref="cta"
 				:url="localePath($pathNames.stroll)"
 				icon-after="walking"
 				hover-icon="running"
@@ -24,3 +27,4 @@
 </template>
 
 <script src="./index.js"></script>
+<style src="./index.module.scss" module lang="scss"></style>

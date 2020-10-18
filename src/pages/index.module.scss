@@ -1,0 +1,22 @@
+@use '~/assets/scss/globals';
+
+.title {
+	margin-top: globals.s(2);
+
+	color: transparent;
+
+	@media screen and (max-width: globals.$breakpoints_viewport-4) {
+		margin-top: globals.s(1);
+	}
+}
+
+.subtitle {
+	order: -1;
+
+	color: globals.$colors_mars;
+}
+
+.titleWord,
+.subtitleWord {
+	display: inline-block;
+}
