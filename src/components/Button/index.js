@@ -32,7 +32,7 @@ export default {
 	methods: {
 		handleMouseMove(e) {
 			const xMovement = 0.25;
-			const yMovement = 0.4;
+			const yMovement = 0.5;
 
 			const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 			const boundingRect = this.$el.getBoundingClientRect();
@@ -42,7 +42,6 @@ export default {
 			gsap.to(this.$refs.content, {
 				x: (relX - boundingRect.width / 2) * xMovement,
 				y: (relY - boundingRect.height / 2 - scrollTop) * yMovement,
-				ease: "power1",
 				duration: 0.6,
 			});
 		},
@@ -51,7 +50,7 @@ export default {
 			gsap.to(this.$refs.content, {
 				x: 0,
 				y: 0,
-				ease: "power3",
+				ease: "power3.out",
 				duration: 0.6,
 				clearProps: "all",
 			});

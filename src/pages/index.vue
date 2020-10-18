@@ -17,6 +17,7 @@
 				icon-after="walking"
 				hover-icon="running"
 				class="u-margin-top:64"
+				:class="$style.cta"
 			>
 				{{ $t('home.cta') }}
 			</Button>

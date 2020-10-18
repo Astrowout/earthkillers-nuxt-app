@@ -8,7 +8,7 @@ export default {
 	created() {
 		setTimeout(() => {
 			this.$store.dispatch("updateTip", "Dit is een <strong>nieuwe tip.</strong>");
-		}, 1200);
+		}, 2000);
 	},
 
 	mounted() {
@@ -37,8 +37,8 @@ export default {
 					textShadow: "0px 0px 0px #39493D",
 					opacity: 1,
 					ease: "power2.out",
-					duration: 1.2,
-					stagger: 0.2,
+					duration: 1.5,
+					stagger: 0.3,
 				})
 				.fromTo(`.${this.$style.subtitleWord}`, {
 					y: 16,
@@ -51,23 +51,24 @@ export default {
 					stagger: 0.1,
 				}, "-=1")
 				.fromTo(this.$refs.cta.$el, {
-					scale: 0.5,
 					opacity: 0,
 				}, {
-					scale: 1,
 					opacity: 1,
-					ease: "power2.out",
 					duration: 0.8,
-				}, "-=1")
+				}, "-=1.2")
 				.fromTo(this.$refs.cta.$refs.content, {
-					scale: 1.5,
 					opacity: 0,
 				}, {
-					scale: 1,
 					opacity: 1,
-					ease: "power2.out",
-					duration: 0.8,
-				});
+					duration: 0.5,
+				}, "+=0.3")
+				.fromTo(this.$refs.cta.$refs.content, {
+					y: 32,
+				}, {
+					y: 0,
+					ease: "elastic.out(1, 0.3)",
+					duration: 1.5,
+				}, "<");
 		},
 	},
 };
