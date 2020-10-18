@@ -2,4 +2,10 @@
 
 .root {
 	color: globals.$colors_dark-faded;
+
+	user-select: none;
+}
+
+.placeholder {
+	opacity: 0;
 }

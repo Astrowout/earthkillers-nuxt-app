@@ -1,8 +1,6 @@
 <template>
 	<div
 		id="__default"
-		@mousemove="handleMouseMove"
-		@click="handleMouseClick"
 	>
 		<nuxt />
 

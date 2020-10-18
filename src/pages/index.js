@@ -4,6 +4,8 @@ export default {
 	},
 
 	created() {
-		this.$store.dispatch("updateTip", "Dit is een <strong>tip.</strong>");
+		setTimeout(() => {
+			this.$store.dispatch("updateTip", "Dit is een <strong>nieuwe tip.</strong>");
+		}, 1200);
 	},
 };
