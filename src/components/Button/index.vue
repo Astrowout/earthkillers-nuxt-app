@@ -1,15 +1,15 @@
 <template>
 	<ConditionalWrapper
-		:class="$style.root"
+		:class="[$style.root, {
+			[$style['button--secondary']]: secondary
+		}]"
 		:url="url"
 		@mousemove.native="handleMouseMove"
 		@mouseleave.native="handleMouseLeave"
 	>
 		<div
 			ref="content"
-			:class="[$style.content, {
-				[$style['button--secondary']]: secondary
-			}]"
+			:class="$style.content"
 		>
 			<div
 				v-if="iconBefore"

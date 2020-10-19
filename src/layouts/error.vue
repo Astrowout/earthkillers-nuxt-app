@@ -1,7 +1,7 @@
 <template>
 	<main :class="$style.root">
 		<img
-			src="~/assets/images/planet.svg"
+			src="~/assets/images/planet.svg?data"
 			:alt="$t('error.image')"
 			:class="$style.image"
 		>
@@ -16,9 +16,10 @@
 
 		<Button
 			:url="localePath($pathNames.home)"
-			icon-before="arrow"
+			icon-before="walking"
+			hover-icon="running"
 			secondary
-			class="u-margin-top:24"
+			class="u-margin-top:64"
 		>
 			{{ $t('error.cta') }}
 		</Button>

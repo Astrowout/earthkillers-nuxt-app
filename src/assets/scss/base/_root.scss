@@ -16,7 +16,7 @@ h1 {
 
 h2 {
 	font-size: globals.$typography_font-size-24;
-	font-weight: globals.$typography_font-weight-normal;
+	font-weight: globals.$typography_font-weight-semibold;
 
 	@media screen and (max-width: globals.$breakpoints_viewport-7) {
 		font-size: globals.$typography_font-size-20;

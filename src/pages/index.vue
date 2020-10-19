@@ -1,5 +1,11 @@
 <template>
 	<main class="l-container l-container--max">
+		<Cloud :class="[$style.cloud, $style.cloud1]" />
+		<Cloud :class="[$style.cloud, $style.cloud2]" />
+		<Cloud :class="[$style.cloud, $style.cloud3]" />
+		<Cloud :class="[$style.cloud, $style.cloud4]" />
+		<Cloud :class="[$style.cloud, $style.cloud5]" />
+
 		<div class="l-container__body">
 			<h1
 				:class="$style.title"
@@ -24,6 +30,17 @@
 		</div>
 
 		<Tip class="l-container__footer" />
+
+		<img
+			:class="[$style.bird, $style.bird1]"
+			src="~/assets/images/bird1.png"
+			alt="bird"
+		>
+		<img
+			:class="[$style.bird, $style.bird2]"
+			src="~/assets/images/bird2.png"
+			alt="bird"
+		>
 	</main>
 </template>
 

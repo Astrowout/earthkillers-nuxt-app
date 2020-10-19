@@ -71,7 +71,7 @@
 		width: 100%;
 		height: 100%;
 
-		opacity: 0.6;
+		opacity: 0.5;
 		border-radius: globals.$borders_radius-base;
 		box-shadow: globals.shadows_soft(globals.$colors_mars);
 
@@ -98,14 +98,12 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-
-	transition: opacity 0s linear 0.1s;
 }
 
 .iconBefore {
 	margin-right: globals.s(1);
 
-	transform: rotate(180deg);
+	transform: scaleX(-1);
 }
 
 .iconAfter {
@@ -117,15 +115,24 @@
 }
 
 .button--secondary {
-	background-color: globals.$colors_dark;
+	box-shadow: globals.shadows_neumorphism-inverted(globals.$colors_night);
 
-	&:after {
-		content: none;
+	.content {
+		color: globals.$colors_dark;
+		border-radius: globals.$borders_radius-base;
+		background-color: globals.$colors_ice;
+		box-shadow: globals.shadows_neumorphism(globals.$colors_ice);
+
+		&::after {
+			box-shadow: globals.shadows_soft(globals.$colors_ice);
+		}
 	}
 
-	&:hover {
-		.iconBefore {
-			transform: rotate(180deg) translate3d(30%, 0, 0);
+	&:focus {
+		.content {
+			box-shadow:
+				globals.shadows_neumorphism(globals.$colors_ice),
+				0 0 0 4px globals.$colors_ice;
 		}
 	}
 }

@@ -17,7 +17,7 @@ export default {
 				return this.tip;
 			}
 
-			return this.tip.replace(/([A-Za-z0-9'<>/]+)/g, `<span class='${this.$style.tipWord}'>$1</span>`);
+			return this.tip.replace(/([A-Za-z0-9'<>/.]+)/g, `<span class='${this.$style.tipWord}'>$1</span>`);
 		},
 	},
 
@@ -30,20 +30,18 @@ export default {
 			this.$nextTick(() => {
 				gsap.set(`.${this.$style.tipWord}`, {
 					opacity: 0,
-					y: "16px",
+					y: 8,
 				});
 			});
 		},
 		enter(_, done) {
-			this.$nextTick(() => {
-				gsap.to(`.${this.$style.tipWord}`, {
-					opacity: 1,
-					y: 0,
-					duration: 0.8,
-					ease: "power3.out",
-					onComplete: done,
-					stagger: 0.06,
-				});
+			gsap.to(`.${this.$style.tipWord}`, {
+				opacity: 1,
+				y: 0,
+				duration: 0.8,
+				ease: "power3.out",
+				onComplete: done,
+				stagger: 0.06,
 			});
 		},
 		leave(_, done) {
@@ -57,7 +55,7 @@ export default {
 				}
 
 				gsap.to(words, {
-					y: 16,
+					y: 8,
 					opacity: 0,
 					onComplete: done,
 				});

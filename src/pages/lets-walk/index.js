@@ -41,8 +41,8 @@ export default {
 	},
 
 	mounted() {
-		this.renderCanvas();
-		this.loopScene();
+		// this.renderCanvas();
+		// this.loopScene();
 	},
 
 	methods: {

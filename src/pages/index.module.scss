@@ -26,3 +26,63 @@
 .cta {
 	opacity: 0;
 }
+
+.cloud {
+	position: fixed;
+	z-index: globals.$z-index_back;
+
+	opacity: 0.5;
+	filter: drop-shadow(globals.$shadows_cloud);
+}
+
+.cloud1 {
+	top: 30%;
+	left: 3%;
+
+	width: 96px;
+}
+
+.cloud2 {
+	top: 6%;
+	left: 8%;
+
+	width: 64px;
+}
+
+.cloud3 {
+	top: 10%;
+	left: 40%;
+
+	width: 144px;
+}
+
+.cloud4 {
+	top: 8%;
+	left: 70%;
+
+	width: 96px;
+}
+
+.cloud5 {
+	top: 20%;
+	left: 90%;
+
+	width: 120px;
+}
+
+.bird {
+	position: fixed;
+	width: 72px;
+
+	opacity: 0;
+}
+
+.bird1 {
+	top: 20%;
+	left: 8%;
+}
+
+.bird2 {
+	top: 10%;
+	left: 85%;
+}

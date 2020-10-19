@@ -2,7 +2,8 @@
 	"home": {
 		"title": "The Impact of Population Growth Through History.",
 		"subtitle": "How nature is affected by human beings.",
-		"cta": "Take a stroll"
+		"cta": "Take a stroll",
+		"tip": "Turn on <strong>sound</strong> for the best experience."
 	},
 	"stroll": {
 		"year": "Year",

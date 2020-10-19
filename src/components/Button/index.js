@@ -42,7 +42,7 @@ export default {
 			gsap.to(this.$refs.content, {
 				x: (relX - boundingRect.width / 2) * xMovement,
 				y: (relY - boundingRect.height / 2 - scrollTop) * yMovement,
-				duration: 0.6,
+				duration: 0.4,
 			});
 		},
 
@@ -51,7 +51,7 @@ export default {
 				x: 0,
 				y: 0,
 				ease: "power3.out",
-				duration: 0.6,
+				duration: 0.4,
 				clearProps: "all",
 			});
 		},
