@@ -5,10 +5,10 @@
 		"cta": "Take a stroll",
 		"tip": "Turn on <strong>sound</strong> for the best experience."
 	},
-	"stroll": {
+	"walk": {
 		"year": "Year",
-		"population": "People on planet earth",
-		"scroll": "Scroll to start walking"
+		"tip": "<strong>Scroll</strong> to start walking.",
+		"population": "People on planet earth"
 	},
 	"menu": {
 		"resources": "Resources",

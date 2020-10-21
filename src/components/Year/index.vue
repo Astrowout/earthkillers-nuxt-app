@@ -5,7 +5,7 @@
 		}]"
 	>
 		<span :class="$style.label">
-			{{ $t('stroll.year') }}
+			{{ $t('walk.year') }}
 		</span>
 
 		<span :class="$style.content">

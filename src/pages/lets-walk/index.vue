@@ -1,28 +1,20 @@
 <template>
 	<div ref="container" :class="$style.container">
-		<Year
-			:class="$style.year"
-			:current-year="currentYear"
-			:is-future="future"
-		/>
+		<div class="l-container__body">
+			<Year
+				:class="$style.year"
+				:current-year="currentYear"
+				:is-future="future"
+			/>
 
-		<Population
-			:class="$style.population"
-			:current-population="currentPopulation"
-			:is-future="future"
-		/>
+			<Population
+				:class="$style.population"
+				:current-population="currentPopulation"
+				:is-future="future"
+			/>
+		</div>
 
-		<transition
-			appear
-			name="fade-out"
-		>
-			<p
-				v-if="firstScroll"
-				:class="$style.instructions"
-			>
-				{{ $t('stroll.scroll') }}
-			</p>
-		</transition>
+		<Tip class="l-container__footer" />
 	</div>
 </template>
 

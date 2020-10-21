@@ -5,7 +5,7 @@
 		}]"
 	>
 		<span :class="$style.label">
-			{{ $t('stroll.population') }}
+			{{ $t('walk.population') }}
 		</span>
 
 		<transition

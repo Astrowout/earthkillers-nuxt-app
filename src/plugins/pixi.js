@@ -1,6 +1,6 @@
 import * as PIXI from "pixi.js";
-import gsap from "gsap";
-import { config } from "~/assets/config";
+import { gsap } from "gsap";
+import { config } from "~/src/helpers/node_modules/~/assets/config";
 
 import ground from "~/assets/images/stroll/ground.jpg";
 import clouds from "~/assets/images/stroll/clouds.png";
