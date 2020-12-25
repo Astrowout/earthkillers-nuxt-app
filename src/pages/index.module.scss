@@ -13,7 +13,7 @@
 .subtitle {
 	order: -1;
 
-	color: globals.$colors_mars;
+	color: globals.$colors_main;
 }
 
 .titleWord,
@@ -35,6 +35,15 @@
 	filter: drop-shadow(globals.$shadows_cloud);
 }
 
+.cloudAnimate {
+	animation-direction: alternate;
+	animation-duration: 3s;
+	animation-fill-mode: both;
+	animation-iteration-count: infinite;
+	animation-name: floating;
+	animation-timing-function: ease-in-out;
+}
+
 .cloud1 {
 	top: 30%;
 	left: 3%;
@@ -47,6 +56,8 @@
 	left: 8%;
 
 	width: 64px;
+
+	animation-delay: 0.5s;
 }
 
 .cloud3 {
@@ -54,6 +65,8 @@
 	left: 40%;
 
 	width: 144px;
+
+	animation-delay: 1s;
 }
 
 .cloud4 {
@@ -61,6 +74,8 @@
 	left: 70%;
 
 	width: 96px;
+
+	animation-delay: 1.5s;
 }
 
 .cloud5 {
@@ -68,13 +83,22 @@
 	left: 90%;
 
 	width: 120px;
+
+	animation-delay: 2s;
 }
 
 .bird {
 	position: fixed;
 	width: 72px;
+}
 
-	opacity: 0;
+.birdAnimate {
+	animation-direction: alternate;
+	animation-duration: 3s;
+	animation-fill-mode: both;
+	animation-iteration-count: infinite;
+	animation-name: floating;
+	animation-timing-function: ease-in-out;
 }
 
 .bird1 {
@@ -85,4 +109,17 @@
 .bird2 {
 	top: 10%;
 	left: 85%;
+
+	animation-delay: 1s;
+}
+
+// Animations
+@keyframes floating {
+	from {
+		transform: translate3d(0, 0, 0);
+	}
+
+	to {
+		transform: translate3d(0, 20px, 0);
+	}
 }

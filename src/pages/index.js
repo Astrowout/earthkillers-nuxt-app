@@ -10,6 +10,16 @@ export default {
 		Cloud,
 	},
 
+	data() {
+		return {
+			revealComplete: false,
+		};
+	},
+
+	beforeCreate() {
+		this.$store.dispatch("updateTip", null);
+	},
+
 	mounted() {
 		this.handleReveal();
 	},
@@ -39,8 +49,15 @@ export default {
 					opacity: 0,
 					ease: "power2.out",
 					duration: 3,
-					onComplete: this.handleClouds,
 				})
+				.from(`.${this.$style.bird}`, {
+					y: "random(2000, 2500)",
+					ease: "power2.out",
+					duration: 3,
+					onComplete: () => {
+						this.revealComplete = true;
+					},
+				}, 0)
 				.fromTo(`.${this.$style.titleWord}`, {
 					textShadow: "0px 0px 80px #39493D",
 					opacity: 0,
@@ -49,7 +66,7 @@ export default {
 					opacity: 1,
 					ease: "power2.out",
 					duration: 1.5,
-					stagger: 0.3,
+					stagger: 0.2,
 				}, "-=1.5")
 				.fromTo(`.${this.$style.subtitleWord}`, {
 					y: 16,
@@ -71,39 +88,8 @@ export default {
 					opacity: 0,
 				}, {
 					opacity: 1,
-					duration: 0.5,
-				}, "+=0.3")
-				.fromTo(this.$refs.cta.$refs.content, {
-					scale: 0.6,
-				}, {
-					scale: 1,
-					ease: "back.out(5)",
 					duration: 0.8,
-				}, "<");
-		},
-
-		handleClouds() {
-			gsap.to(`.${this.$style.cloud}`, {
-				y: "random(8, 40)",
-				duration: 6,
-				repeat: -1,
-				ease: "power2.inOut",
-				yoyo: true,
-			});
-
-			gsap.to(`.${this.$style.bird}`, {
-				opacity: 1,
-				duration: 2,
-				stagger: 0.5,
-			});
-
-			gsap.to(`.${this.$style.bird}`, {
-				y: "random(8, 40)",
-				duration: 6,
-				repeat: -1,
-				ease: "power2.inOut",
-				yoyo: true,
-			});
+				});
 		},
 	},
 };

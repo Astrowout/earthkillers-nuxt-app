@@ -28,8 +28,8 @@
 	&:focus {
 		.content {
 			box-shadow:
-				globals.shadows_neumorphism(globals.$colors_mars),
-				0 0 0 4px globals.$colors_mars;
+				globals.shadows_neumorphism(globals.$colors_main),
+				0 0 0 4px globals.$colors_main;
 		}
 	}
 }
@@ -46,8 +46,8 @@
 
 	color: globals.$colors_ice;
 	border-radius: globals.$borders_radius-base;
-	background-color: globals.$colors_mars;
-	box-shadow: globals.shadows_neumorphism(globals.$colors_mars);
+	background-color: globals.$colors_main;
+	box-shadow: globals.shadows_neumorphism(globals.$colors_main);
 	text-shadow: globals.$shadows_text;
 
 	@media screen and (max-width: globals.$breakpoints_viewport-7) {
@@ -73,7 +73,7 @@
 
 		opacity: 0.5;
 		border-radius: globals.$borders_radius-base;
-		box-shadow: globals.shadows_soft(globals.$colors_mars);
+		box-shadow: globals.shadows_soft(globals.$colors_main);
 
 		transition: opacity globals.$animations_hover;
 	}
