@@ -31,8 +31,8 @@ export default {
 
 	methods: {
 		handleMouseMove(e) {
-			const xMovement = 0.25;
-			const yMovement = 0.5;
+			const xMovement = 0.3;
+			const yMovement = 0.6;
 
 			const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 			const boundingRect = this.$el.getBoundingClientRect();

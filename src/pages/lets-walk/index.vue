@@ -1,5 +1,5 @@
 <template>
-	<div ref="container" :class="$style.container">
+	<div ref="container" class="l-container">
 		<div class="l-container__body">
 			<Year
 				:class="$style.year"

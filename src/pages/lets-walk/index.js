@@ -9,6 +9,8 @@ export default {
 		const res = await $axios.$get("https://d6wn6bmjj722w.population.io/1.0/population/World/today-and-tomorrow/");
 		const totalPopulation = res.total_population[0].population;
 
+		console.log(totalPopulation);
+
 		return {
 			totalPopulation,
 		};
